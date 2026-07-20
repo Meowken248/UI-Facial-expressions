@@ -25,8 +25,8 @@
 }
 
 .brows {
-  top: 1%;
-  height: 12%;
+  top: 0%;
+  height: 10%;
   gap: 30%;
 }
 
@@ -38,13 +38,10 @@
 }
 
 /* ─── Eyebrow colours ───────────────────────────────────────────────────────── */
-.brow:first-child path {
-  fill: #058cff;
-}
-
-.brow:last-child path {
-  fill: #8b5cf6;
-}
+/* Color/stroke-width are now set inline in Eyebrow.tsx for every curve variant
+   (including "soft" — it's a round-cap stroke now, not a filled path), so no
+   CSS color rule is needed here anymore. Kept as a comment to avoid two
+   sources of truth / future confusion. */
 
 /* ─── Eye shell & lash ──────────────────────────────────────────────────────── */
 /* Lock the SVG's aspect ratio to its viewBox (220x180). Without this, grid/flex

@@ -38,8 +38,8 @@
 }
 
 .brows {
-    top: 1%;
-    height: 12%;
+    top: 0%;
+    height: 10%;
     gap: 28%
 }
 
@@ -76,7 +76,10 @@
 }
 
 .brow path {
-    stroke-width: 12;
+    /* stroke-width is actually set inline in Eyebrow.tsx (14 for every curve
+       variant now); this value is overridden and kept in sync only for
+       readability if the inline style is ever removed. */
+    stroke-width: 14;
     filter: drop-shadow(0 3px 3px rgba(40, 77, 119, .18))
 }
 
