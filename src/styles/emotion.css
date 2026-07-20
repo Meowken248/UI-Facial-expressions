@@ -25,8 +25,8 @@
 }
 
 .brows {
-  top: 3.5%;
-  height: 14.5%;
+  top: 1%;
+  height: 12%;
   gap: 30%;
 }
 
@@ -81,9 +81,9 @@
 /* ─── Mouth ─────────────────────────────────────────────────────────────────── */
 .mouth {
   position: absolute;
-  width: 28%;
-  height: 29%;
-  left: 36%;
+  width: 34%;
+  height: 34%;
+  left: 33%;
   top: 52%;
   overflow: visible;
   filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.1));

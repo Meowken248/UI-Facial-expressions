@@ -33,21 +33,21 @@
 
 .eyes {
     top: 21%;
-    height: 40%;
+    height: 34%;
     gap: 20%
 }
 
 .brows {
-    top: 3.5%;
-    height: 14.5%;
+    top: 1%;
+    height: 12%;
     gap: 28%
 }
 
 .mouth {
     top: 52%;
-    height: 29%;
-    width: 28%;
-    left: 36%
+    height: 55%;
+    width: 34%;
+    left: 33%
 }
 
 .eye {
