@@ -1,0 +1,87 @@
+:root {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #101828;
+  background: #e9f0fa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100dvh;
+  background: radial-gradient(circle at 50% -20%, #fff 0, #eef4fc 44%, #dce7f5 100%);
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible {
+  outline: 3px solid #008cff;
+  outline-offset: 3px;
+}
+
+main {
+  width: min(100%, 1600px);
+  margin: auto;
+  padding: clamp(10px, 2vw, 32px);
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: clamp(4px, 1vw, 16px);
+}
+
+.stage:fullscreen {
+  background: #060910;
+  padding: 0;
+}
+
+.stage:fullscreen .device-frame {
+  width: min(100vw, calc(100vh * 1.6));
+  border-radius: 0;
+  border-width: 0;
+}
+
+.device-frame {
+  position: relative;
+  width: min(100%, 1200px);
+  aspect-ratio: 16/10;
+  padding: clamp(6px, 1.1vw, 16px);
+  border: clamp(5px, 0.75vw, 12px) solid #080b10;
+  border-radius: clamp(24px, 3vw, 52px);
+  background: linear-gradient(145deg, #2b323d, #05070a 40%, #171c23);
+  box-shadow: 0 28px 70px #19315042, inset 0 2px 2px #ffffff4d;
+  overflow: hidden;
+}
+
+.device-frame:after {
+  content: "";
+  position: absolute;
+  inset: 1.1%;
+  border: 1px solid #ffffff33;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  main {
+    padding: 4px;
+  }
+  .stage {
+    padding: 2px;
+  }
+  .device-frame {
+    border-radius: 20px;
+  }
+  .controls {
+    margin-top: 8px;
+  }
+}

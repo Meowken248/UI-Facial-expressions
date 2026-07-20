@@ -1,0 +1,2 @@
+import { useEffect, useState } from 'react';
+export function DashboardHeader({temperature}:{temperature:number}){const [time,setTime]=useState(()=>new Date());useEffect(()=>{const id=setInterval(()=>setTime(new Date()),30000);return()=>clearInterval(id)},[]);return <header className="dash-header"><span>{time.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})}</span><span className="weather"><i/> {temperature}°C</span></header>}
