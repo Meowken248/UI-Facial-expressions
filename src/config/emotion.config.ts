@@ -26,8 +26,8 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   }),
   
   surprised: base({
-    leftEye: eye('open', { pupilScale: 0.55, scale: 1.15 }),
-    rightEye: eye('open', { pupilScale: 0.55, scale: 1.15 }),
+    leftEye: eye('open', { pupilScale: 0.5, scale: 1.15 }),
+    rightEye: eye('open', { pupilScale: 0.5, scale: 1.15 }),
     leftBrow: { curve: 'raised', translateY: -12 },
     rightBrow: { curve: 'raised', translateY: -12 },
     mouth: mouth('o')
@@ -125,8 +125,8 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   }),
   
   angry: base({
-    leftEye: eye('fire'),
-    rightEye: eye('fire'),
+    leftEye: eye('fire', { pupilScale: 0.78 }),
+    rightEye: eye('fire', { pupilScale: 0.78 }),
     leftBrow: { curve: 'angry', rotation: 16, translateY: 6 },
     rightBrow: { curve: 'angry', rotation: -16, translateY: 6 },
     mouth: mouth('frown'),
@@ -162,8 +162,8 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   }),
   
   love: base({
-    leftEye: eye('heart'),
-    rightEye: eye('heart'),
+    leftEye: eye('heart', { pupilScale: 0.48 }),
+    rightEye: eye('heart', { pupilScale: 0.48 }),
     mouth: mouth('laugh'),
     effects: [{ type: 'heart', position: 'around' }],
     faceAnimation: 'bounce'
