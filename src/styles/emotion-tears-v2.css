@@ -1,0 +1,23 @@
+/* Anchor each stream to the optical center of its eye, not the SVG edge. */
+.effect-tear.effect-left,
+.effect-tear.effect-right{
+  right:auto;
+  top:56%;
+  margin-left:0;
+  transform:none;
+  transform-origin:50% 0;
+}
+.effect-tear.effect-left{left:24.2%}
+.effect-tear.effect-right{left:75.8%}
+.effect-tear.n0{--tear-x:-50%;--tear-scale:.82;animation-delay:.08s}
+.effect-tear.n1{--tear-x:calc(-50% + 7px);--tear-scale:.64;animation-delay:.82s}
+.effect-tear.n2{--tear-x:calc(-50% - 6px);--tear-scale:.5;animation-delay:1.56s}
+@keyframes tear-stream{
+  0%{opacity:0;transform:translate(var(--tear-x),-8px) scale(var(--tear-scale),.35)}
+  12%{opacity:.96;transform:translate(var(--tear-x),0) scale(var(--tear-scale),1)}
+  68%{opacity:.9}
+  100%{opacity:0;transform:translate(var(--tear-x),clamp(64px,7vw,130px)) scale(calc(var(--tear-scale) * .92),1.18)}
+}
+@media(prefers-reduced-motion:reduce){
+  .effect-tear{transform:translate(-50%,8px)!important}
+}

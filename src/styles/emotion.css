@@ -1,411 +1,110 @@
-/* Main Face styling */
+/* ─── Main Face container ──────────────────────────────────────────────────── */
 .emotion-face {
   position: absolute;
   z-index: 3;
   inset: 12% 19% 13%;
   transform-origin: center;
-  transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
   --pointer-x: 0;
   --pointer-y: 0;
 }
 
+/* ─── Brow & Eye grid layout ────────────────────────────────────────────────── */
 .eyes, .brows {
   position: absolute;
-  left: 7%;
-  right: 7%;
+  left: 7%; right: 7%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 23%;
 }
+.eyes  { top: 22%; height: 38%; }
+.brows { top: 8%;  height: 17%; gap: 30%; }
+.eye, .brow { width: 100%; height: 100%; overflow: visible; }
 
-.eyes {
-  top: 22%;
-  height: 38%;
-}
+/* ─── Eyebrow colours ───────────────────────────────────────────────────────── */
+.brow:first-child path { fill: #058cff; }
+.brow:last-child  path { fill: #8b5cf6; }
 
-.brows {
-  top: 8%;
-  height: 17%;
-  gap: 30%;
-}
+/* ─── Eye shell & lash ──────────────────────────────────────────────────────── */
+.eye { filter: drop-shadow(0 8px 12px rgba(12, 25, 50, 0.15)); }
+.eye-shell { fill: #0f172a; stroke: #1e293b; stroke-width: 5; }
+.eye-lash  { fill: #0f172a; }
 
-.eye, .brow {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-/* Eyebrows styling (Calligraphic thick-to-thin curves) */
-.brow path {
-  transform-origin: center;
-  transform-box: fill-box;
-  transition: 
-    d 0.65s cubic-bezier(0.34, 1.56, 0.64, 1), 
-    fill 0.5s ease, 
-    transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.brow:first-child path {
-  fill: #058cff;
-  filter: drop-shadow(0 2px 4px rgba(5, 140, 255, 0.3));
-}
-.brow:last-child path {
-  fill: #8b5cf6;
-  filter: drop-shadow(0 2px 4px rgba(139, 92, 246, 0.3));
-}
-
-/* Eye base & shell */
-.eye {
-  filter: drop-shadow(0 8px 12px rgba(12, 25, 50, 0.15));
-}
-.eye-shell {
-  fill: #0f172a;
-  stroke: #1e293b;
-  stroke-width: 5;
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.eye-lash {
-  fill: #0f172a;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* Springy Eye shapes & transitions */
-.eye-layer {
-  transform-origin: center;
-  transform-box: fill-box;
-  transition: 
-    opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-    transform 0.6s cubic-bezier(0.34, 1.65, 0.64, 1);
-}
-
-/* Pupil & gaze shifts with elastic spring behavior */
-.pupil {
-  transform-box: fill-box;
-  transform-origin: center;
-  transition: transform 0.55s cubic-bezier(0.25, 1.35, 0.5, 1.1);
-}
-
-.eye-reflection-large {
-  fill: #ffffff;
-  transition: transform 0.5s cubic-bezier(0.25, 1.25, 0.5, 1);
-}
-
-.eye-reflection-small {
-  fill: #ffffff;
-  opacity: 0.9;
-}
-
-.eye-glow {
-  opacity: 0.45;
-  mix-blend-mode: screen;
-}
-
-/* Closed/Wink eyes */
+/* ─── Closed/wink line ──────────────────────────────────────────────────────── */
 .eye-line-path {
   fill: none;
   stroke: #0f172a;
   stroke-width: 14;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: 
-    d 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
-    stroke-width 0.4s ease;
 }
 
-/* Spiral eyes animation */
-.eye-spiral-path {
-  fill: none;
-  stroke-width: 10;
-  stroke-linecap: round;
-  transform-origin: center;
-  transform-box: fill-box;
-  animation: spin 3s linear infinite;
-}
+/* ─── Star eye ──────────────────────────────────────────────────────────────── */
+.star-eye { fill: #fde047; stroke: #fff; stroke-width: 2; }
 
-/* Fire eye flames */
-.eye-fire-flame {
-  transform-origin: bottom center;
-  transform-box: fill-box;
-  animation: flameMove 1.5s ease-in-out infinite alternate;
-}
-
-/* Watery eye wave */
-.eye-watery-wave {
-  animation: waveMove 2s ease-in-out infinite alternate;
-}
-
-/* Mouth styling */
+/* ─── Mouth ─────────────────────────────────────────────────────────────────── */
 .mouth {
   position: absolute;
-  width: 22%;
-  height: 25%;
-  left: 39%;
-  top: 57%;
+  width: 22%; height: 25%;
+  left: 39%; top: 57%;
   overflow: visible;
   filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.1));
 }
-
-/* Elastic Pop-Spring transitions for Mouth Shapes */
-.mouth-layer {
-  transform-origin: center;
-  transform-box: fill-box;
-  transition: 
-    opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
-    transform 0.65s cubic-bezier(0.34, 1.75, 0.64, 1);
-}
-
 .mouth-line {
   fill: none;
   stroke: #0f172a;
   stroke-width: 14;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: d 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-
 .mouth-fill {
   fill: #0f172a;
   stroke: #0f172a;
   stroke-width: 4;
   stroke-linejoin: round;
-  transition: d 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+.mouth-tongue { fill: #ff8fa3; }
 
-.mouth-tongue {
-  fill: #ff8fa3;
-  transition: d 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Cheeks styling */
+/* ─── Cheeks ────────────────────────────────────────────────────────────────── */
 .cheeks {
   position: absolute;
-  left: 14%;
-  right: 14%;
+  left: 14%; right: 14%;
   top: 60%;
   display: flex;
   justify-content: space-between;
   pointer-events: none;
 }
+.cheek-left, .cheek-right { width: 14%; aspect-ratio: 2; overflow: visible; }
 
-.cheek-left, .cheek-right {
-  width: 14%;
-  aspect-ratio: 2;
-  overflow: visible;
-  transform-origin: center;
-  transition: 
-    opacity 0.4s ease, 
-    transform 0.65s cubic-bezier(0.34, 1.75, 0.64, 1);
-}
-
-.cheek-left line, .cheek-right line {
-  stroke-linecap: round;
-}
-
-/* Visual effects styling */
-.effects {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.effect-svg {
-  position: absolute;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
-  transform-origin: center;
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
-}
-
-.effect-zzz {
-  animation: floatZzz 3.5s ease-in-out infinite;
-}
-.effect-zzz.n1 { animation-delay: 0.8s; }
-.effect-zzz.n2 { animation-delay: 1.6s; }
-
-.effect-heart {
-  animation: floatHeart 3s ease-out infinite;
-}
-.effect-heart.n1 { animation-delay: 0.6s; }
-.effect-heart.n2 { animation-delay: 1.2s; }
-.effect-heart.n3 { animation-delay: 1.8s; }
-.effect-heart.n4 { animation-delay: 2.4s; }
-
-.effect-sparkle {
-  animation: sparkleRotate 2.5s ease-in-out infinite alternate;
-}
-.effect-sparkle.n1 { animation-delay: 0.7s; }
-.effect-sparkle.n2 { animation-delay: 1.4s; }
-
-.effect-anger {
-  animation: pulseAnger 1s ease-in-out infinite alternate;
-}
-
-.effect-tear {
-  animation: tearDrip 2s cubic-bezier(0.4, 0, 1, 0.4) infinite;
-}
-
-.effect-warning {
-  animation: pulseWarning 1.2s ease-in-out infinite alternate;
-}
-
+/* ─── Effects overlay ──────────────────────────────────────────────────────── */
+.effects { position: absolute; inset: 0; pointer-events: none; }
+.effect-svg { display: inline-flex; transform-origin: center; }
 .effect-thinking-hand {
   position: absolute;
-  bottom: -45px;
-  left: 45%;
-  width: 55px;
-  height: 55px;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-  transform-origin: bottom center;
-  animation: thinkTap 3s ease-in-out infinite;
+  bottom: -45px; left: 45%;
+  display: inline-flex;
 }
 
-/* Animations */
-.face-bounce {
-  animation: bounce 2.4s ease-in-out infinite;
-}
+/* ─── Face body animations ─────────────────────────────────────────────────── */
+.face-bounce  { animation: bounce  2.4s ease-in-out infinite; }
+.face-breathe { animation: breathe 4s   ease-in-out infinite; }
+.face-shake   { animation: shake   1.6s ease-in-out infinite; }
+.face-pulse   { animation: pulse   1.8s ease-in-out infinite; }
 
-.face-breathe {
-  animation: breathe 4s ease-in-out infinite;
-}
-
-.face-shake {
-  animation: shake 1.6s ease-in-out infinite;
-}
-
-.face-pulse {
-  animation: pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes bounce {
-  50% { transform: translateY(-3%) scale(1.01); }
-}
-
-@keyframes breathe {
-  50% { transform: scale(1.02) translateY(-0.5%); }
-}
-
+@keyframes bounce  { 50% { transform: translateY(-3%) scale(1.01); } }
+@keyframes breathe { 50% { transform: scale(1.02) translateY(-0.5%); } }
 @keyframes shake {
   0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-0.5deg) translateX(-1px); }
-  75% { transform: rotate(0.5deg) translateX(1px); }
+  25%       { transform: rotate(-0.5deg) translateX(-1px); }
+  75%       { transform: rotate( 0.5deg) translateX( 1px); }
 }
+@keyframes pulse   { 50% { transform: scale(1.03); } }
 
-@keyframes pulse {
-  50% { transform: scale(1.03); }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes flameMove {
-  to { transform: scaleY(1.15) skewX(2deg); }
-}
-
-@keyframes waveMove {
-  to { transform: translateY(2px) scaleX(1.05); }
-}
-
-@keyframes floatZzz {
-  0% {
-    opacity: 0;
-    transform: translate(0, 15px) scale(0.6);
-  }
-  15% {
-    opacity: 0.9;
-  }
-  80% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(25px, -60px) scale(1);
-  }
-}
-
-@keyframes floatHeart {
-  0% {
-    opacity: 0;
-    transform: translate(0, 20px) scale(0.5) rotate(-10deg);
-  }
-  20% {
-    opacity: 0.95;
-  }
-  85% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--float-x, 15px), -80px) scale(1.1) rotate(15deg);
-  }
-}
-
-@keyframes sparkleRotate {
-  0% {
-    transform: scale(0.6) rotate(0deg);
-    opacity: 0.4;
-  }
-  50% {
-    transform: scale(1.1) rotate(90deg);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.6) rotate(180deg);
-    opacity: 0.4;
-  }
-}
-
-@keyframes pulseAnger {
-  0% {
-    transform: scale(0.9) rotate(-5deg);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1.1) rotate(5deg);
-    opacity: 1;
-  }
-}
-
-@keyframes tearDrip {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.7);
-  }
-  15% {
-    opacity: 0.95;
-    transform: translate(0, 5px) scale(1);
-  }
-  80% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--tear-x, -5px), 50px) scale(0.8);
-  }
-}
-
-@keyframes pulseWarning {
-  0% {
-    transform: scale(0.95);
-    filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.2));
-  }
-  100% {
-    transform: scale(1.1);
-    filter: drop-shadow(0 6px 12px rgba(239, 68, 68, 0.5));
-  }
-}
-
-@keyframes thinkTap {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-4px) rotate(-3deg); }
-}
-
+/* ─── Reduced motion ───────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *:before, *:after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
-  }
-  .pupil, .eye-layer, .eye-line-path, .mouth-line, .mouth-fill, .mouth-tongue {
     transition: none !important;
   }
 }

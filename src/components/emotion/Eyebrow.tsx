@@ -1,36 +1,53 @@
+import { motion } from 'framer-motion';
 import type { BrowConfig } from '../../types/emotion.types';
 
-export function Eyebrow({ config, side }: { config: BrowConfig; side: 'left' | 'right' }) {
-  const curve = config.curve ?? 'soft';
+const SPRING = { type: 'spring' as const, stiffness: 220, damping: 24, mass: 0.9 };
 
-  // Build beautiful calligraphic/filled thick-to-thin eyebrow shapes
-  let d = '';
+// All paths share exactly the same structure for smooth morphing:
+// M start Q peak-x,peak-y end Q mid-x,mid-y start Z
+function getBrowPath(curve: BrowConfig['curve'], side: 'left' | 'right') {
   if (curve === 'angry') {
-    d = side === 'left'
-      ? 'M 25,35 Q 105,75 185,92 Q 105,68 25,35 Z'
-      : 'M 25,92 Q 105,75 185,35 Q 105,68 25,92 Z';
-  } else if (curve === 'sad') {
-    d = side === 'left'
-      ? 'M 25,86 Q 100,10 185,55 Q 100,28 25,86 Z'
-      : 'M 25,55 Q 110,10 185,86 Q 110,28 25,55 Z';
-  } else if (curve === 'raised') {
-    d = side === 'left'
-      ? 'M 25,52 Q 105,2 185,46 Q 105,20 25,52 Z'
-      : 'M 25,46 Q 105,2 185,52 Q 105,20 25,46 Z';
-  } else {
-    // soft / default
-    d = side === 'left'
-      ? 'M 25,65 Q 105,12 185,60 Q 105,28 25,65 Z'
-      : 'M 25,60 Q 105,12 185,65 Q 105,28 25,60 Z';
+    return side === 'left'
+      ? 'M 25,35 Q 105,72 185,92 Q 105,60 25,35 Z'
+      : 'M 25,92 Q 105,72 185,35 Q 105,60 25,92 Z';
   }
+  if (curve === 'sad') {
+    return side === 'left'
+      ? 'M 25,82 Q 100,14 185,52 Q 100,30 25,82 Z'
+      : 'M 25,52 Q 110,14 185,82 Q 110,30 25,52 Z';
+  }
+  if (curve === 'raised') {
+    return side === 'left'
+      ? 'M 25,50 Q 105,4 185,44 Q 105,22 25,50 Z'
+      : 'M 25,44 Q 105,4 185,50 Q 105,22 25,44 Z';
+  }
+  // soft / default
+  return side === 'left'
+    ? 'M 25,62 Q 105,14 185,58 Q 105,30 25,62 Z'
+    : 'M 25,58 Q 105,14 185,62 Q 105,30 25,58 Z';
+}
 
-  const style = {
-    transform: `translate(${config.translateX ?? 0}px, ${config.translateY ?? 0}px) rotate(${config.rotation ?? 0}deg)`,
-  };
+export function Eyebrow({ config, side }: { config: BrowConfig; side: 'left' | 'right' }) {
+  const d = getBrowPath(config.curve, side);
 
   return (
-    <svg className="brow" style={style} viewBox="0 0 210 110" aria-hidden="true">
-      <path d={d} />
-    </svg>
+    <motion.svg
+      className="brow"
+      viewBox="0 0 210 110"
+      aria-hidden="true"
+      animate={{
+        x: config.translateX ?? 0,
+        y: config.translateY ?? 0,
+        rotate: config.rotation ?? 0,
+      }}
+      transition={SPRING}
+      style={{ overflow: 'visible', transformBox: 'fill-box', transformOrigin: 'center' }}
+    >
+      <motion.path
+        d={d}
+        animate={{ d }}
+        transition={SPRING}
+      />
+    </motion.svg>
   );
 }
