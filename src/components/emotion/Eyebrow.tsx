@@ -6,15 +6,15 @@ const SPRING = { type: 'spring' as const, stiffness: 220, damping: 24, mass: 0.9
 // Rounded single-stroke brows match the soft capsule ends in the reference.
 function getBrowPath(curve: BrowConfig['curve'], side: 'left' | 'right') {
   if (curve === 'angry') {
-    return side === 'left' ? 'M 25,38 Q 105,52 185,84' : 'M 25,84 Q 105,52 185,38';
+    return side === 'left' ? 'M 60,43 Q 105,52 150,73' : 'M 60,73 Q 105,52 150,43';
   }
   if (curve === 'sad') {
-    return side === 'left' ? 'M 25,74 Q 95,22 185,38' : 'M 25,38 Q 115,22 185,74';
+    return side === 'left' ? 'M 60,68 Q 96,31 150,43' : 'M 60,43 Q 114,31 150,68';
   }
   if (curve === 'raised') {
-    return side === 'left' ? 'M 25,58 Q 105,8 185,52' : 'M 25,52 Q 105,8 185,58';
+    return side === 'left' ? 'M 60,58 Q 105,22 150,54' : 'M 60,54 Q 105,22 150,58';
   }
-  return side === 'left' ? 'M 25,69 Q 105,22 185,64' : 'M 25,64 Q 105,22 185,69';
+  return side === 'left' ? 'M 60,65 Q 105,38 150,62' : 'M 60,62 Q 105,38 150,65';
 }
 
 export function Eyebrow({ config, side }: { config: BrowConfig; side: 'left' | 'right' }) {
@@ -40,7 +40,7 @@ export function Eyebrow({ config, side }: { config: BrowConfig; side: 'left' | '
         style={{
           fill: 'none',
           stroke: side === 'left' ? '#078bea' : '#8254df',
-          strokeWidth: 15,
+          strokeWidth: 12,
           strokeLinecap: 'round',
           strokeLinejoin: 'round',
         }}

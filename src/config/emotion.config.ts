@@ -168,9 +168,10 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   }),
 
   love: base({
-    leftEye: eye('heart', { pupilScale: 0.48 }),
-    rightEye: eye('heart', { pupilScale: 0.48 }),
-    mouth: mouth('laugh'),
+    leftEye: eye('heart', { pupilScale: 0.85 }),
+    rightEye: eye('heart', { pupilScale: 0.85 }),
+    mouth: { shape: 'smile', translateY: 1 },
+    cheeks: { visible: true, intensity: 0.9 },
     effects: [{ type: 'heart', position: 'around' }],
     faceAnimation: 'bounce'
   })

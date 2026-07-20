@@ -1,1 +1,145 @@
-.radxa-screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:clamp(16px,2.2vw,37px);background:radial-gradient(circle at 50% 38%,#fff 0,#f5f9ff 46%,#e9f2ff 100%);isolation:isolate}.screen-glow{position:absolute;inset:0;background:linear-gradient(125deg,#65d9ff16,transparent 35%,#9d6bff12);pointer-events:none}.dash-header{position:absolute;z-index:5;top:4.4%;left:50%;transform:translateX(-50%);display:flex;gap:clamp(38px,33vw,470px);align-items:center;font-size:clamp(8px,1.1vw,16px);font-weight:650;white-space:nowrap}.weather{display:flex;align-items:center}.weather i{width:.9em;height:.9em;border-radius:50%;background:#ffd633;box-shadow:-.35em .3em 0 -.1em #fff;border:1px solid #dda900;margin-right:.5em}.stats{position:absolute;z-index:4;top:34%;display:flex;flex-direction:column;color:#0c1528}.stats-left{left:6%}.stats-right{right:5%;align-items:flex-end}.stats strong{font-size:clamp(18px,4vw,55px);font-weight:500;line-height:.9}.stats small{font-size:clamp(7px,.85vw,13px);color:#667085}.gear{margin-top:22%;padding-top:22%;border-top:1px solid #b9c8dc;color:#6c3bff;font-size:clamp(12px,1.8vw,24px)}.battery-label{display:flex;flex-direction:column;align-items:flex-end;margin-top:16%;font-size:clamp(7px,.85vw,13px)}.battery{position:relative;display:block;width:clamp(32px,6vw,82px);height:clamp(6px,.8vw,11px);margin-top:5px;border:1px solid #78869b;border-radius:3px;padding:1px}.battery i{display:block;height:100%;border-radius:1px;background:linear-gradient(90deg,#008cff,#6c3bff)}.bottom-nav{position:absolute;z-index:5;left:11%;right:11%;bottom:3%;height:10%;border-top:1px solid #cfdbeb;display:flex;align-items:flex-end;justify-content:space-between}.bottom-nav button{border:0;background:none;color:#344054;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:42px;padding:0;font-size:clamp(13px,2vw,28px);cursor:pointer}.bottom-nav small{font-size:clamp(5px,.65vw,10px);opacity:0}.bottom-nav .active{color:#6c3bff;transform:translateY(-3px)}
+.radxa-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: clamp(16px, 2.2vw, 37px);
+    background: radial-gradient(circle at 50% 38%, #fff 0, #f5f9ff 46%, #e9f2ff 100%);
+    isolation: isolate
+}
+
+.screen-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(125deg, #65d9ff16, transparent 35%, #9d6bff12);
+    pointer-events: none
+}
+
+.dash-header {
+    position: absolute;
+    z-index: 5;
+    top: 4.4%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: clamp(38px, 33vw, 470px);
+    align-items: center;
+    font-size: clamp(8px, 1.1vw, 16px);
+    font-weight: 650;
+    white-space: nowrap
+}
+
+.weather {
+    display: flex;
+    align-items: center
+}
+
+.weather i {
+    width: .9em;
+    height: .9em;
+    border-radius: 50%;
+    background: #ffd633;
+    box-shadow: -.35em .3em 0 -.1em #fff;
+    border: 1px solid #dda900;
+    margin-right: .5em
+}
+
+.stats {
+    position: absolute;
+    z-index: 4;
+    top: 34%;
+    display: flex;
+    flex-direction: column;
+    color: #0c1528
+}
+
+.stats-left {
+    left: 6%
+}
+
+.stats-right {
+    right: 5%;
+    align-items: flex-end
+}
+
+.stats strong {
+    font-size: clamp(18px, 4vw, 55px);
+    font-weight: 500;
+    line-height: .9
+}
+
+.stats small {
+    font-size: clamp(7px, .85vw, 13px);
+    color: #667085
+}
+
+.gear {
+    margin-top: 22%;
+    padding-top: 22%;
+    border-top: 1px solid #b9c8dc;
+    color: #6c3bff;
+    font-size: clamp(12px, 1.8vw, 24px)
+}
+
+.battery-label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 16%;
+    font-size: clamp(7px, .85vw, 13px)
+}
+
+.battery {
+    position: relative;
+    display: block;
+    width: clamp(32px, 6vw, 82px);
+    height: clamp(6px, .8vw, 11px);
+    margin-top: 5px;
+    border: 1px solid #78869b;
+    border-radius: 3px;
+    padding: 1px
+}
+
+.battery i {
+    display: block;
+    height: 100%;
+    border-radius: 1px;
+    background: linear-gradient(90deg, #008cff, #6c3bff)
+}
+
+.bottom-nav {
+    position: absolute;
+    z-index: 5;
+    left: 11%;
+    right: 11%;
+    bottom: 3%;
+    height: 10%;
+    border-top: 1px solid #cfdbeb;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between
+}
+
+.bottom-nav button {
+    border: 0;
+    background: none;
+    color: #344054;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-width: 42px;
+    padding: 0;
+    font-size: clamp(13px, 2vw, 28px);
+    cursor: pointer
+}
+
+.bottom-nav small {
+    font-size: clamp(5px, .65vw, 10px);
+    opacity: 0
+}
+
+.bottom-nav .active {
+    color: #6c3bff;
+    transform: translateY(-3px)
+}

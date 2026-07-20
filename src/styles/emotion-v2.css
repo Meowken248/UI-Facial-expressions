@@ -1,28 +1,334 @@
-.emotion-face{inset:10% 18% 13%;transform:none;isolation:isolate}
-.face-layer{position:absolute;inset:0;transform-origin:50% 53%;will-change:transform,opacity;pointer-events:none}
-.face-layer.is-entering{z-index:2;animation:face-enter .72s cubic-bezier(.16,1,.3,1) both}
-.face-layer.is-leaving{z-index:1;animation:face-leave .72s cubic-bezier(.55,0,.2,1) both}
-.face-aura{position:absolute;inset:4% 5% 3%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(65,186,255,.1),rgba(108,59,255,.035) 42%,transparent 70%);opacity:.7;transform:scale(.94)}
-.eyes{top:20%;height:41%;gap:20%}.brows{top:5%;height:18%;gap:28%}.mouth{top:58%;height:24%}
-.eye{filter:drop-shadow(0 10px 13px rgba(31,75,126,.22));transition:filter .45s ease}
-.eye-rim{filter:drop-shadow(0 4px 4px rgba(31,94,154,.24))}.eye-shell{fill:#080d1c;stroke:#253653;stroke-width:3}
-.eye-line path{stroke-width:15}.eye-line .lid-glint{stroke:#7bdcff;stroke-width:4;opacity:.6}
-.brow path{stroke-width:12;filter:drop-shadow(0 3px 3px rgba(40,77,119,.18))}
-.mouth-line{stroke-width:12}.mouth-fill{filter:drop-shadow(0 7px 6px rgba(26,34,56,.2))}
-.cheeks{top:61%}.cheeks i{filter:blur(9px);box-shadow:0 0 24px rgba(255,126,183,.7)}
-.effect{width:clamp(28px,5.2vw,78px);height:clamp(28px,5.2vw,78px);fill:currentColor;overflow:visible}
-.effect-heart{color:#f14c96}.effect-star,.effect-sparkle{color:#f4c938}.effect-tear{color:#3bb9ef}.effect-warning,.effect-anger{color:#ef493d}.effect-zzz{color:#238ce0}
-.effect-right{right:1%;top:15%}.effect-left{left:4%;top:53%}.effect-top{right:9%;top:4%}.effect-around.n0{left:0;top:24%}.effect-around.n1{right:1%;top:12%}.effect-around.n2{right:8%;top:48%}
-.is-entering.face-bounce{animation:face-enter .72s cubic-bezier(.16,1,.3,1) both,bounce 2.7s .72s ease-in-out infinite}
-.is-entering.face-breathe{animation:face-enter .72s cubic-bezier(.16,1,.3,1) both,breathe 4.2s .72s ease-in-out infinite}
-.is-entering.face-shake{animation:face-enter .72s cubic-bezier(.16,1,.3,1) both,shake 1.7s .72s ease-in-out infinite}
-.is-entering.face-pulse{animation:face-enter .72s cubic-bezier(.16,1,.3,1) both,pulse 1.9s .72s ease-in-out infinite}
-@keyframes face-enter{0%{opacity:0;transform:translateY(2.5%) scale(.92);filter:blur(4px)}42%{opacity:.18;transform:translateY(1.2%) scale(.96);filter:blur(1px)}100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
-@keyframes face-leave{0%{opacity:1;transform:scale(1);filter:blur(0)}42%{opacity:.3;transform:scale(.97,.86);filter:blur(1px)}100%{opacity:0;transform:translateY(2%) scale(.92,.78);filter:blur(5px)}}
-@keyframes bounce{0%,100%{transform:translateY(0) scale(1)}45%{transform:translateY(-2.2%) scale(1.012)}60%{transform:translateY(.5%) scale(.995)}}
-@keyframes breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-.5%) scale(1.018)}}
-@keyframes shake{0%,75%,100%{transform:rotate(0)}80%,90%{transform:rotate(-.45deg)}85%,95%{transform:rotate(.45deg)}}
-@keyframes pulse{0%,100%{transform:scale(1);filter:saturate(1)}50%{transform:scale(1.025);filter:saturate(1.18)}}
-@keyframes float{0%,100%{opacity:0;transform:translateY(10px) scale(.72) rotate(-4deg)}25%{opacity:.95}70%{opacity:.75;transform:translateY(-16px) scale(1) rotate(5deg)}}
-@keyframes tear{0%{opacity:0;transform:translateY(-7px) scale(.7)}20%{opacity:1}100%{opacity:0;transform:translateY(38px) scale(1)}}
-@media(prefers-reduced-motion:reduce){.face-layer.is-entering,.face-layer.is-leaving,.is-entering.face-bounce,.is-entering.face-breathe,.is-entering.face-shake,.is-entering.face-pulse{animation:none!important}.face-layer.is-leaving{display:none}.face-layer.is-entering{opacity:1;transform:none;filter:none}.pupil{transition:none!important}}
+.emotion-face {
+    inset: 10% 18% 13%;
+    transform: none;
+    isolation: isolate
+}
+
+.face-layer {
+    position: absolute;
+    inset: 0;
+    transform-origin: 50% 53%;
+    will-change: transform, opacity;
+    pointer-events: none
+}
+
+.face-layer.is-entering {
+    z-index: 2;
+    animation: face-enter .72s cubic-bezier(.16, 1, .3, 1) both
+}
+
+.face-layer.is-leaving {
+    z-index: 1;
+    animation: face-leave .72s cubic-bezier(.55, 0, .2, 1) both
+}
+
+.face-aura {
+    position: absolute;
+    inset: 4% 5% 3%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(65, 186, 255, .1), rgba(108, 59, 255, .035) 42%, transparent 70%);
+    opacity: .7;
+    transform: scale(.94)
+}
+
+.eyes {
+    top: 21%;
+    height: 40%;
+    gap: 20%
+}
+
+.brows {
+    top: 3.5%;
+    height: 14.5%;
+    gap: 28%
+}
+
+.mouth {
+    top: 52%;
+    height: 29%;
+    width: 28%;
+    left: 36%
+}
+
+.eye {
+    filter: drop-shadow(0 10px 13px rgba(31, 75, 126, .22));
+    transition: filter .45s ease
+}
+
+.eye-rim {
+    filter: drop-shadow(0 4px 4px rgba(31, 94, 154, .24))
+}
+
+.eye-shell {
+    fill: #080d1c;
+    stroke: #253653;
+    stroke-width: 3
+}
+
+.eye-line path {
+    stroke-width: 15
+}
+
+.eye-line .lid-glint {
+    stroke: #7bdcff;
+    stroke-width: 4;
+    opacity: .6
+}
+
+.brow path {
+    stroke-width: 12;
+    filter: drop-shadow(0 3px 3px rgba(40, 77, 119, .18))
+}
+
+.mouth-line {
+    stroke-width: 12
+}
+
+.mouth-fill {
+    filter: drop-shadow(0 7px 6px rgba(26, 34, 56, .2))
+}
+
+.cheeks {
+    top: 61%
+}
+
+.cheeks i {
+    filter: blur(9px);
+    box-shadow: 0 0 24px rgba(255, 126, 183, .7)
+}
+
+.effect {
+    width: clamp(28px, 5.2vw, 78px);
+    height: clamp(28px, 5.2vw, 78px);
+    fill: currentColor;
+    overflow: visible
+}
+
+.effect-heart {
+    color: #f14c96
+}
+
+.effect-star,
+.effect-sparkle {
+    color: #f4c938
+}
+
+.effect-tear {
+    color: #3bb9ef
+}
+
+.effect-warning,
+.effect-anger {
+    color: #ef493d
+}
+
+.effect-zzz {
+    color: #238ce0
+}
+
+.effect-right {
+    right: 1%;
+    top: 15%
+}
+
+.effect-left {
+    left: 4%;
+    top: 53%
+}
+
+.effect-top {
+    right: 9%;
+    top: 4%
+}
+
+.effect-around.n0 {
+    left: 0;
+    top: 24%
+}
+
+.effect-around.n1 {
+    right: 1%;
+    top: 12%
+}
+
+.effect-around.n2 {
+    right: 8%;
+    top: 48%
+}
+
+.is-entering.face-bounce {
+    animation: face-enter .72s cubic-bezier(.16, 1, .3, 1) both, bounce 2.7s .72s ease-in-out infinite
+}
+
+.is-entering.face-breathe {
+    animation: face-enter .72s cubic-bezier(.16, 1, .3, 1) both, breathe 4.2s .72s ease-in-out infinite
+}
+
+.is-entering.face-shake {
+    animation: face-enter .72s cubic-bezier(.16, 1, .3, 1) both, shake 1.7s .72s ease-in-out infinite
+}
+
+.is-entering.face-pulse {
+    animation: face-enter .72s cubic-bezier(.16, 1, .3, 1) both, pulse 1.9s .72s ease-in-out infinite
+}
+
+@keyframes face-enter {
+    0% {
+        opacity: 0;
+        transform: translateY(2.5%) scale(.92);
+        filter: blur(4px)
+    }
+
+    42% {
+        opacity: .18;
+        transform: translateY(1.2%) scale(.96);
+        filter: blur(1px)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0)
+    }
+}
+
+@keyframes face-leave {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0)
+    }
+
+    42% {
+        opacity: .3;
+        transform: scale(.97, .86);
+        filter: blur(1px)
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(2%) scale(.92, .78);
+        filter: blur(5px)
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1)
+    }
+
+    45% {
+        transform: translateY(-2.2%) scale(1.012)
+    }
+
+    60% {
+        transform: translateY(.5%) scale(.995)
+    }
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1)
+    }
+
+    50% {
+        transform: translateY(-.5%) scale(1.018)
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    75%,
+    100% {
+        transform: rotate(0)
+    }
+
+    80%,
+    90% {
+        transform: rotate(-.45deg)
+    }
+
+    85%,
+    95% {
+        transform: rotate(.45deg)
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        filter: saturate(1)
+    }
+
+    50% {
+        transform: scale(1.025);
+        filter: saturate(1.18)
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: translateY(10px) scale(.72) rotate(-4deg)
+    }
+
+    25% {
+        opacity: .95
+    }
+
+    70% {
+        opacity: .75;
+        transform: translateY(-16px) scale(1) rotate(5deg)
+    }
+}
+
+@keyframes tear {
+    0% {
+        opacity: 0;
+        transform: translateY(-7px) scale(.7)
+    }
+
+    20% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(38px) scale(1)
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    .face-layer.is-entering,
+    .face-layer.is-leaving,
+    .is-entering.face-bounce,
+    .is-entering.face-breathe,
+    .is-entering.face-shake,
+    .is-entering.face-pulse {
+        animation: none !important
+    }
+
+    .face-layer.is-leaving {
+        display: none
+    }
+
+    .face-layer.is-entering {
+        opacity: 1;
+        transform: none;
+        filter: none
+    }
+
+    .pupil {
+        transition: none !important
+    }
+}

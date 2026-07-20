@@ -89,9 +89,9 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
       className="eye"
       viewBox="0 0 220 180"
       aria-hidden="true"
-      animate={{ scale: config.scale ?? 1, rotate: config.rotation ?? 0 }}
+      animate={{ scaleX: (config.scale ?? 1) * 0.93, scaleY: (config.scale ?? 1) * 1.04, rotate: config.rotation ?? 0 }}
       transition={SPRING_IRIS}
-      style={{ overflow: 'visible' }}
+      style={{ overflow: 'visible', transformBox: 'fill-box', transformOrigin: 'center' }}
     >
       <defs>
         {/* Outer ring — linear, bright at one edge fading to near-black, matches the
@@ -238,7 +238,7 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
                   <motion.circle
                     cx="110" cy="90"
                     fill="none"
-                    stroke={side === 'left' ? '#36c8ff' : '#b781ff'}
+                    stroke={isHeart ? '#df9bff' : (side === 'left' ? '#36c8ff' : '#b781ff')}
                     strokeWidth={7 * hs}
                     opacity="0.42"
                     animate={{ r: pupilR + 4 }}
@@ -262,7 +262,7 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
                       ? 'M 49,124 A 73,73 0 0 0 153,151'
                       : 'M 67,151 A 73,73 0 0 0 171,124'}
                     fill="none"
-                    stroke={side === 'left' ? '#8beaff' : '#d2b0ff'}
+                    stroke={isHeart ? '#f3b0dd' : (side === 'left' ? '#8beaff' : '#d2b0ff')}
                     strokeWidth={5 * hs}
                     strokeLinecap="round"
                     opacity="0.54"
@@ -320,7 +320,7 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
                     fill={`url(#${id}-heart)`}
                     stroke="#9f1239"
                     strokeWidth={1.5 * hs}
-                    animate={{ scale: [hs, hs * 1.08, hs * 0.97, hs * 1.05, hs] }}
+                    animate={{ scale: [hs * 1.3, hs * 1.38, hs * 1.26, hs * 1.34, hs * 1.3] }}
                     transition={{ repeat: Infinity, duration: 1.3, ease: 'easeInOut' }}
                     style={{ transformOrigin: '0px 0px', transformBox: 'fill-box' }}
                     filter={`url(#${id}-glow)`}
