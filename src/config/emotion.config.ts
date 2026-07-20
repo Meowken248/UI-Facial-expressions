@@ -35,7 +35,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   
   wink: base({
     rightEye: eye('wink', { closedType: 'down' }),
-    mouth: mouth('small-smile')
+    mouth: mouth('smile')
   }),
   
   laughing: base({
@@ -103,7 +103,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     rightEye: eye('spiral'),
     leftBrow: { rotation: -12 },
     rightBrow: { rotation: 12 },
-    mouth: mouth('wave'),
+    mouth: mouth('squiggly'),
     faceAnimation: 'breathe'
   }),
   
@@ -148,7 +148,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     rightEye: eye('watery', { scale: 0.95 }),
     leftBrow: { curve: 'sad', rotation: 8 },
     rightBrow: { curve: 'sad', rotation: -8 },
-    mouth: mouth('wave'),
+    mouth: mouth('squiggly'),
     effects: [{ type: 'tear', position: 'left' }]
   }),
   

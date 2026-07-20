@@ -24,11 +24,14 @@ function SparkleSVG({ size = 32 }: { size?: number }) {
   );
 }
 
-function WarningSVG({ size = 56 }: { size?: number }) {
+function WarningSVG({ size = 110 }: { size?: number }) {
   return (
-    <svg viewBox="0 0 24 24" width={size} height={size} fill="#ef4444"
-      style={{ filter: 'drop-shadow(0 4px 10px rgba(239,68,68,0.45))' }}>
-      <path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z" />
+    <svg viewBox="0 0 40 80" width={size * 0.65} height={size * 1.3}
+      style={{ overflow: 'visible', filter: 'drop-shadow(0 5px 12px rgba(239,68,68,0.55))' }}>
+      <g transform="rotate(12 20 40)">
+        <path d="M12 8 C12 4, 28 4, 28 8 L23 48 C23 52, 17 52, 17 48 Z" fill="#ef4444" />
+        <circle cx="20" cy="66" r="6.5" fill="#ef4444" />
+      </g>
     </svg>
   );
 }
