@@ -9,6 +9,9 @@ const paths: Record<MouthConfig['shape'], string> = {
   
   // 2. small-smile (closed smile line) - TỰ HÀO, HÀI LÒNG, THƯ GIÃN
   'small-smile': 'M65 85 Q110 115 155 85',
+
+  // Hài lòng: nụ cười khép kín rộng và mềm hơn
+  'wide-smile': 'M42 80 Q110 128 178 80',
   
   // 3. open (excited open mouth) - HÁO HỨC, CẢNH BÁO
   open: 'M85 85 C85 62 135 62 135 85 C135 110 85 110 85 85 Z',
@@ -49,7 +52,7 @@ export function Mouth({ config }: { config: MouthConfig }) {
   const clipId = `mouth-clip-${shape}`;
 
   return (
-    <svg className="mouth" viewBox="0 0 220 180" aria-hidden="true" style={{ overflow: 'visible' }}>
+    <svg className="mouth" viewBox="0 0 220 180" aria-hidden="true" style={{ overflow: 'visible', transform: `translateY(${config.translateY ?? 0}%)` }}>
       <defs>
         <clipPath id={clipId}>
           <path d={d} />

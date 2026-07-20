@@ -68,9 +68,11 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   }),
   
   satisfied: base({
-    leftEye: eye('closed', { closedType: 'up' }),
-    rightEye: eye('closed', { closedType: 'up' }),
-    mouth: mouth('small-smile')
+    leftEye: eye('watery', { scale: 0.96, pupilScale: 0.92, lookY: 7 }),
+    rightEye: eye('watery', { scale: 0.96, pupilScale: 0.92, lookY: 7 }),
+    mouth: mouth('wide-smile'),
+    cheeks: { visible: true, intensity: 0.56 },
+    faceAnimation: 'breathe'
   }),
   
   relaxed: base({
@@ -93,9 +95,8 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     rightEye: eye('open', { lookX: -6, lookY: -6 }),
     leftBrow: { curve: 'raised', translateY: -8, rotation: -6 },
     rightBrow: { curve: 'soft', rotation: 8 },
-    mouth: mouth('frown'),
-    cheeks: { visible: false },
-    effects: [{ type: 'thinking-hand', position: 'center' }]
+    mouth: { shape: 'frown', translateY: -11 },
+    cheeks: { visible: false }
   }),
   
   confused: base({
