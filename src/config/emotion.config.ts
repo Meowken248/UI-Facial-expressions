@@ -104,11 +104,12 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   }),
 
   confused: base({
-    leftEye: eye('spiral'),
-    rightEye: eye('spiral'),
-    leftBrow: { rotation: -12 },
-    rightBrow: { rotation: 12 },
-    mouth: mouth('squiggly'),
+    leftEye: eye('spiral', { scale: 0.82 }),
+    rightEye: eye('spiral', { scale: 0.82 }),
+    leftBrow: { curve: 'sad', rotation: -4, translateY: 2 },
+    rightBrow: { curve: 'sad', rotation: 4, translateY: 2 },
+    mouth: { shape: 'squiggly', scaleX: 0.78, translateY: -3 },
+    cheeks: { visible: false },
     faceAnimation: 'breathe'
   }),
 

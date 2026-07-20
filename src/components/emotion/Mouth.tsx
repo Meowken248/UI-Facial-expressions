@@ -52,7 +52,7 @@ export function Mouth({ config }: { config: MouthConfig }) {
   const clipId = `mouth-clip-${shape}`;
 
   return (
-    <svg className="mouth" viewBox="0 0 220 180" aria-hidden="true" style={{ overflow: 'visible', transform: `translateY(${config.translateY ?? 0}%)` }}>
+    <svg className="mouth" viewBox="0 0 220 180" aria-hidden="true" style={{ overflow: 'visible', transform: `translateY(${config.translateY ?? 0}%) scaleX(${config.scaleX ?? 1})` }}>
       <defs>
         <clipPath id={clipId}>
           <path d={d} />

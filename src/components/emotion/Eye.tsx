@@ -57,6 +57,8 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
 
   const coreOffX = coreOffsetX * hs;
   const coreOffY = coreOffsetY * hs;
+  const starHighlightScale = isStar ? 0.68 : 1;
+  const starHighlightLift = isStar ? -13 * hs : 0;
 
   // ── Highlights: authored as deltas from eye center (110, 90), then scaled by `hs` ──
   // Verified against the reference photos: blue/left = 3 highlights, purple/right =
@@ -119,6 +121,15 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
           <stop offset="45%" stopColor="#f9557d" />
           <stop offset="100%" stopColor="#be123c" />
         </radialGradient>
+        <linearGradient id={`${id}-star`} x1="25%" y1="10%" x2="70%" y2="90%">
+          <stop offset="0%" stopColor="#fff39a" />
+          <stop offset="32%" stopColor="#ffe34d" />
+          <stop offset="72%" stopColor="#ffc51f" />
+          <stop offset="100%" stopColor="#f5aa08" />
+        </linearGradient>
+        <filter id={`${id}-star-shadow`} x="-35%" y="-35%" width="170%" height="170%">
+          <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#a95d00" floodOpacity="0.7" />
+        </filter>
         <filter id={`${id}-glow`} x="-40%" y="-40%" width="180%" height="180%">
           <feGaussianBlur stdDeviation="3" result="blur" />
           <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
@@ -166,11 +177,27 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
             style={{ transformOrigin: '110px 90px', transformBox: 'fill-box' }}
           >
             <ellipse className="eye-shell" cx="110" cy="90" rx="82" ry="79"
-              filter={`url(#${id}-inner-shadow)`}
-              style={{ fill: '#050914', stroke: '#02050b', strokeWidth: 9 }} />
-            {/* Fully rounded capsule tab — rx = height/2 guarantees round ends on both sides */}
-            <rect className="eye-lash" x={lashX} y={lashY} width={LASH_W} height={LASH_H}
-              rx={LASH_H / 2} ry={LASH_H / 2} />
+              filter={isSpiral ? undefined : `url(#${id}-inner-shadow)`}
+              style={{
+                fill: isSpiral ? '#f7fbff' : '#050914',
+                stroke: isSpiral ? (side === 'left' ? '#087fc0' : '#6330a4') : '#02050b',
+                strokeWidth: isSpiral ? 7 : 9,
+              }} />
+            {/* Confused spiral eyes stay clean and have no outer lash tab. */}
+            {!isSpiral && (
+              <rect className="eye-lash" x={lashX} y={lashY} width={LASH_W} height={LASH_H}
+                rx={LASH_H / 2} ry={LASH_H / 2} />
+            )}
+            {isStar && (
+              <g fill="none" stroke="#050914" strokeWidth="14" strokeLinecap="round">
+                <path d="M110 10 L110 24" />
+                {side === 'left' ? (
+                  <><path d="M78 160 L70 172" /><path d="M96 166 L92 178" /></>
+                ) : (
+                  <><path d="M142 160 L150 172" /><path d="M124 166 L128 178" /></>
+                )}
+              </g>
+            )}
           </motion.g>
         )}
       </AnimatePresence>
@@ -203,8 +230,43 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
                     fill="none"
                     stroke={isHeart ? `url(#${id}-ringPurple)` : (side === 'left' ? `url(#${id}-ringBlue)` : `url(#${id}-ringPurple)`)}
                     strokeWidth={17 * hs}
+                    opacity="0.88"
                     animate={{ r: pupilR + 9 }}
                     transition={SPRING_PUPIL}
+                  />
+                  {/* Translucent inner glass layer */}
+                  <motion.circle
+                    cx="110" cy="90"
+                    fill="none"
+                    stroke={side === 'left' ? '#36c8ff' : '#b781ff'}
+                    strokeWidth={7 * hs}
+                    opacity="0.42"
+                    animate={{ r: pupilR + 4 }}
+                    transition={SPRING_PUPIL}
+                    style={{ mixBlendMode: 'screen' }}
+                  />
+                  {/* Directional specular reflection on the curved rim */}
+                  <motion.path
+                    d={side === 'left'
+                      ? 'M 45,61 A 75,75 0 0 1 126,17'
+                      : 'M 94,17 A 75,75 0 0 1 175,61'}
+                    fill="none"
+                    stroke="#ffffff"
+                    strokeWidth={4.5 * hs}
+                    strokeLinecap="round"
+                    opacity="0.48"
+                    style={{ mixBlendMode: 'screen' }}
+                  />
+                  <motion.path
+                    d={side === 'left'
+                      ? 'M 49,124 A 73,73 0 0 0 153,151'
+                      : 'M 67,151 A 73,73 0 0 0 171,124'}
+                    fill="none"
+                    stroke={side === 'left' ? '#8beaff' : '#d2b0ff'}
+                    strokeWidth={5 * hs}
+                    strokeLinecap="round"
+                    opacity="0.54"
+                    style={{ mixBlendMode: 'screen' }}
                   />
                   <motion.circle
                     cx="110" cy="90"
@@ -225,13 +287,29 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
 
               {/* ── Star ── */}
               {isStar && (
-                <motion.path
-                  d="m110 45 12 27 30 4 -22 21 6 30 -26 -15 -26 15 6 -30 -22 -21 30 -4 Z"
-                  fill="#fde047" stroke="#f5b400" strokeWidth="2.5"
-                  animate={{ rotate: 360 }}
-                  transition={{ repeat: Infinity, duration: 7, ease: 'linear' }}
-                  style={{ transformOrigin: '110px 90px', transformBox: 'fill-box' }}
-                />
+                <motion.g
+                  animate={{ scale: [0.78, 0.815, 0.78], rotate: [-1.2, 1.2, -1.2] }}
+                  transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
+                  style={{ transformOrigin: '110px 94px', transformBox: 'fill-box' }}
+                >
+                  <path
+                    d="M110 29 L131 71 L177 78 L143 110 L151 155 L110 133 L69 155 L77 110 L43 78 L89 71 Z"
+                    fill={`url(#${id}-star)`}
+                    stroke="#bd7000"
+                    strokeWidth="5"
+                    strokeLinejoin="round"
+                    filter={`url(#${id}-star-shadow)`}
+                  />
+                  <path
+                    d="M110 39 L128 76 L166 81 L137 106"
+                    fill="none"
+                    stroke="#fff6b7"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.82"
+                  />
+                </motion.g>
               )}
 
               {/* ── Heart — sits centered in the core like a pupil, NOT filling the whole eye ── */}
@@ -275,22 +353,22 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
                 <>
                   {/* Main highlight — two overlapping lobes forming one soft "cloud" */}
                   <motion.ellipse
-                    cx={highlightLargeX} cy={highlightLargeY}
-                    rx={(side === 'left' ? 26 : 30) * hs}
-                    ry={(side === 'left' ? 33 : 25) * hs}
+                    cx={highlightLargeX} cy={highlightLargeY + starHighlightLift}
+                    rx={(side === 'left' ? 26 : 30) * hs * starHighlightScale}
+                    ry={(side === 'left' ? 33 : 25) * hs * starHighlightScale}
                     fill="#fff" opacity="0.97"
-                    animate={{ cx: highlightLargeX, cy: highlightLargeY }}
+                    animate={{ cx: highlightLargeX, cy: highlightLargeY + starHighlightLift }}
                     transition={SPRING_GAZE}
                     transform={`rotate(${side === 'left' ? -18 : 20} ${highlightLargeX} ${highlightLargeY})`}
                   />
                   <motion.ellipse
                     cx={highlightLargeX + (side === 'left' ? 26 : -26) * hs}
-                    cy={highlightLargeY + 6 * hs}
-                    rx={16 * hs} ry={20 * hs}
+                    cy={highlightLargeY + 6 * hs + starHighlightLift}
+                    rx={16 * hs * starHighlightScale} ry={20 * hs * starHighlightScale}
                     fill="#fff" opacity="0.95"
                     animate={{
                       cx: highlightLargeX + (side === 'left' ? 26 : -26) * hs,
-                      cy: highlightLargeY + 6 * hs,
+                      cy: highlightLargeY + 6 * hs + starHighlightLift,
                     }}
                     transition={SPRING_GAZE}
                     transform={`rotate(${side === 'left' ? -10 : 10} ${highlightLargeX} ${highlightLargeY})`}
@@ -338,23 +416,21 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
                 </>
               )}
 
-              {/* ── Spiral Eye — unchanged, fully self-contained shape ── */}
+              {/* Clean open spiral on a pale surface, matching the confused reference. */}
               {isSpiral && (
-                <>
-                  <circle cx="110" cy="90" r="64"
-                    fill="#f8fafc"
-                    stroke={side === 'left' ? '#0ea5e9' : '#a855f7'}
-                    strokeWidth="10"
-                  />
-                  <motion.path
-                    d="M 110,90 C 110,72 135,72 135,90 C 135,116 85,120 83,86 C 81,42 165,35 171,92 C 179,155 75,170 58,104"
-                    stroke={side === 'left' ? '#0284c7' : '#7c3aed'}
-                    strokeWidth="8" strokeLinecap="round" fill="none"
-                    animate={{ rotate: 360 }}
-                    transition={{ repeat: Infinity, duration: 2.5, ease: 'linear' }}
-                    style={{ transformOrigin: '110px 90px', transformBox: 'fill-box' }}
-                  />
-                </>
+                <motion.path
+                  d={side === 'left'
+                    ? 'M 110,90 C 110,72 136,72 136,91 C 136,120 86,123 82,87 C 77,43 161,37 169,91 C 179,153 79,168 56,106'
+                    : 'M 110,90 C 110,72 84,72 84,91 C 84,120 134,123 138,87 C 143,43 59,37 51,91 C 41,153 141,168 164,106'}
+                  stroke={side === 'left' ? '#087fc0' : '#7138b6'}
+                  strokeWidth="10"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  fill="none"
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 4.2, ease: 'linear' }}
+                  style={{ transformOrigin: '110px 90px', transformBox: 'fill-box' }}
+                />
               )}
             </motion.g>
           </motion.g>
