@@ -17,7 +17,7 @@ function getBrowPath(curve: BrowConfig['curve'], side: 'left' | 'right') {
   // Soft brow: full, rounded head on the inner edge, tapering to a fine outer tail.
   return side === 'left'
     ? 'M 42,92 C 78,52 126,35 165,49 C 174,52 177,60 172,68 C 136,53 88,71 45,100 C 39,101 37,96 42,92 Z'
-    : 'M 43,50 C 80,28 125,38 166,84 C 172,90 170,95 164,96 C 125,65 87,57 53,70 C 45,74 35,61 43,50 Z';
+    : 'M 168,92 C 132,52 84,35 45,49 C 36,52 33,60 38,68 C 74,53 122,71 165,100 C 171,101 173,96 168,92 Z';
 }
 
 export function Eyebrow({ config, side }: { config: BrowConfig; side: 'left' | 'right' }) {
