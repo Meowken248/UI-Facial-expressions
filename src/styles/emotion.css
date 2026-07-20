@@ -9,25 +9,58 @@
 }
 
 /* ─── Brow & Eye grid layout ────────────────────────────────────────────────── */
-.eyes, .brows {
+.eyes,
+.brows {
   position: absolute;
-  left: 7%; right: 7%;
+  left: 7%;
+  right: 7%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 23%;
 }
-.eyes  { top: 22%; height: 38%; }
-.brows { top: 8%;  height: 17%; gap: 30%; }
-.eye, .brow { width: 100%; height: 100%; overflow: visible; }
+
+.eyes {
+  top: 22%;
+  height: 38%;
+}
+
+.brows {
+  top: 8%;
+  height: 17%;
+  gap: 30%;
+}
+
+.eye,
+.brow {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
 
 /* ─── Eyebrow colours ───────────────────────────────────────────────────────── */
-.brow:first-child path { fill: #058cff; }
-.brow:last-child  path { fill: #8b5cf6; }
+.brow:first-child path {
+  fill: #058cff;
+}
+
+.brow:last-child path {
+  fill: #8b5cf6;
+}
 
 /* ─── Eye shell & lash ──────────────────────────────────────────────────────── */
-.eye { filter: drop-shadow(0 8px 12px rgba(12, 25, 50, 0.15)); }
-.eye-shell { fill: #0f172a; stroke: #1e293b; stroke-width: 5; }
-.eye-lash  { fill: #0f172a; }
+/* Lock the SVG's aspect ratio to its viewBox (220x180). Without this, grid/flex
+   sizing above can stretch the eye into an oval and ruin the round "glass eye"
+   look from the reference — the shell/ring/core math in Eye.tsx assumes 220:180. */
+.eye {
+  filter: drop-shadow(0 8px 12px rgba(12, 25, 50, 0.15));
+  aspect-ratio: 220 / 180;
+}
+
+/* fill/stroke for .eye-shell are now set inline in Eye.tsx (needed per-instance
+   values); this class is kept only as a style hook, no color rules here anymore
+   to avoid two sources of truth. */
+.eye-lash {
+  fill: #0f172a;
+}
 
 /* ─── Closed/wink line ──────────────────────────────────────────────────────── */
 .eye-line-path {
@@ -39,16 +72,23 @@
 }
 
 /* ─── Star eye ──────────────────────────────────────────────────────────────── */
-.star-eye { fill: #fde047; stroke: #fff; stroke-width: 2; }
+.star-eye {
+  fill: #fde047;
+  stroke: #fff;
+  stroke-width: 2;
+}
 
 /* ─── Mouth ─────────────────────────────────────────────────────────────────── */
 .mouth {
   position: absolute;
-  width: 22%; height: 25%;
-  left: 39%; top: 57%;
+  width: 22%;
+  height: 25%;
+  left: 39%;
+  top: 57%;
   overflow: visible;
   filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.1));
 }
+
 .mouth-line {
   fill: none;
   stroke: #0f172a;
@@ -56,60 +96,138 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
 .mouth-fill {
   fill: #0f172a;
   stroke: #0f172a;
   stroke-width: 4;
   stroke-linejoin: round;
 }
-.mouth-tongue { fill: #ff8fa3; }
+
+.mouth-tongue {
+  fill: #ff8fa3;
+}
 
 /* ─── Cheeks ────────────────────────────────────────────────────────────────── */
 .cheeks {
   position: absolute;
-  left: 14%; right: 14%;
+  left: 14%;
+  right: 14%;
   top: 60%;
   display: flex;
   justify-content: space-between;
   pointer-events: none;
 }
-.cheek-left, .cheek-right { width: 14%; aspect-ratio: 2; overflow: visible; }
+
+.cheek-left,
+.cheek-right {
+  width: 14%;
+  aspect-ratio: 2;
+  overflow: visible;
+}
 
 /* ─── Effects overlay ──────────────────────────────────────────────────────── */
-.effects { position: absolute; inset: 0; pointer-events: none; }
-.effect-svg { display: inline-flex; transform-origin: center; }
+.effects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.effect-svg {
+  display: inline-flex;
+  transform-origin: center;
+}
+
 .effect-thinking-hand {
   position: absolute;
-  bottom: -45px; left: 45%;
+  bottom: -45px;
+  left: 45%;
   display: inline-flex;
 }
 
 /* ─── Face body animations ─────────────────────────────────────────────────── */
-.face-bounce  { animation: bounce  2.4s ease-in-out infinite; }
-.face-breathe { animation: breathe 4s   ease-in-out infinite; }
-.face-shake   { animation: shake   1.6s ease-in-out infinite; }
-.face-pulse   { animation: pulse   1.8s ease-in-out infinite; }
+.face-bounce {
+  animation: bounce 2.4s ease-in-out infinite;
+}
 
-@keyframes bounce  { 50% { transform: translateY(-3%) scale(1.01); } }
-@keyframes breathe { 50% { transform: scale(1.02) translateY(-0.5%); } }
+.face-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.face-shake {
+  animation: shake 1.6s ease-in-out infinite;
+}
+
+.face-pulse {
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateY(-3%) scale(1.01);
+  }
+}
+
+@keyframes breathe {
+  50% {
+    transform: scale(1.02) translateY(-0.5%);
+  }
+}
+
 @keyframes float {
-  0%   { transform: translateY(0px)   rotate(0deg)     scale(1);      }
-  18%  { transform: translateY(-5px)  rotate(0.35deg)  scale(1.006);  }
-  38%  { transform: translateY(-3px)  rotate(0.1deg)   scale(1.003);  }
-  55%  { transform: translateY(-7px)  rotate(-0.25deg) scale(1.009);  }
-  78%  { transform: translateY(-2px)  rotate(0.2deg)   scale(1.004);  }
-  100% { transform: translateY(0px)   rotate(0deg)     scale(1);      }
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+
+  18% {
+    transform: translateY(-5px) rotate(0.35deg) scale(1.006);
+  }
+
+  38% {
+    transform: translateY(-3px) rotate(0.1deg) scale(1.003);
+  }
+
+  55% {
+    transform: translateY(-7px) rotate(-0.25deg) scale(1.009);
+  }
+
+  78% {
+    transform: translateY(-2px) rotate(0.2deg) scale(1.004);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
 }
+
 @keyframes shake {
-  0%, 100% { transform: rotate(0deg); }
-  25%       { transform: rotate(-0.5deg) translateX(-1px); }
-  75%       { transform: rotate( 0.5deg) translateX( 1px); }
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-0.5deg) translateX(-1px);
+  }
+
+  75% {
+    transform: rotate(0.5deg) translateX(1px);
+  }
 }
-@keyframes pulse   { 50% { transform: scale(1.03); } }
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.03);
+  }
+}
 
 /* ─── Reduced motion ───────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *, *:before, *:after {
+
+  *,
+  *:before,
+  *:after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;

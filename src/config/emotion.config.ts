@@ -16,7 +16,7 @@ const base = (overrides: Partial<EmotionConfig> = {}): EmotionConfig => ({
 
 export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   happy: base(),
-  
+
   excited: base({
     leftEye: eye('star'),
     rightEye: eye('star'),
@@ -24,41 +24,45 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     effects: [{ type: 'sparkle', position: 'around' }],
     faceAnimation: 'bounce'
   }),
-  
+
   surprised: base({
-    leftEye: eye('open', { pupilScale: 0.5, scale: 1.15 }),
-    rightEye: eye('open', { pupilScale: 0.5, scale: 1.15 }),
+    // Reference photos show the pupil staying full-size when "surprised" —
+    // only the whole eye opens wider (scale 1.15). A shrunk pupilScale here
+    // would create a tiny black dot floating in a big white sclera, which
+    // doesn't match the glossy glass-eye reference at all.
+    leftEye: eye('open', { scale: 1.15 }),
+    rightEye: eye('open', { scale: 1.15 }),
     leftBrow: { curve: 'raised', translateY: -12 },
     rightBrow: { curve: 'raised', translateY: -12 },
     mouth: mouth('o')
   }),
-  
+
   wink: base({
     rightEye: eye('wink', { closedType: 'down' }),
     mouth: mouth('smile')
   }),
-  
+
   laughing: base({
     leftEye: eye('closed', { closedType: 'up' }),
     rightEye: eye('closed', { closedType: 'up' }),
     mouth: mouth('laugh'),
     faceAnimation: 'shake'
   }),
-  
+
   playful: base({
     rightEye: eye('wink', { closedType: 'down' }),
     leftBrow: { rotation: -8 },
     rightBrow: { rotation: 10 },
     mouth: mouth('tongue')
   }),
-  
+
   cute: base({
     leftEye: eye('heart'),
     rightEye: eye('heart'),
     mouth: mouth('wave'),
     effects: [{ type: 'heart', position: 'around' }]
   }),
-  
+
   proud: base({
     leftEye: eye('open', { scale: 0.95 }),
     rightEye: eye('open', { scale: 0.95 }),
@@ -66,7 +70,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     rightBrow: { curve: 'raised' },
     mouth: mouth('small-smile')
   }),
-  
+
   satisfied: base({
     leftEye: eye('watery', { scale: 0.96, pupilScale: 0.92, lookY: 7 }),
     rightEye: eye('watery', { scale: 0.96, pupilScale: 0.92, lookY: 7 }),
@@ -74,14 +78,14 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     cheeks: { visible: true, intensity: 0.56 },
     faceAnimation: 'breathe'
   }),
-  
+
   relaxed: base({
     leftEye: eye('closed', { closedType: 'down' }),
     rightEye: eye('closed', { closedType: 'down' }),
     mouth: mouth('small-smile'),
     faceAnimation: 'breathe'
   }),
-  
+
   curious: base({
     leftEye: eye('open', { scale: 1.1, lookX: 6 }),
     rightEye: eye('open', { scale: 0.95, lookX: 6 }),
@@ -89,7 +93,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     rightBrow: { curve: 'soft', rotation: 4 },
     mouth: mouth('o')
   }),
-  
+
   thinking: base({
     leftEye: eye('open', { lookX: -6, lookY: -6 }),
     rightEye: eye('open', { lookX: -6, lookY: -6 }),
@@ -98,7 +102,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     mouth: { shape: 'frown', translateY: -11 },
     cheeks: { visible: false }
   }),
-  
+
   confused: base({
     leftEye: eye('spiral'),
     rightEye: eye('spiral'),
@@ -107,7 +111,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     mouth: mouth('squiggly'),
     faceAnimation: 'breathe'
   }),
-  
+
   sad: base({
     leftEye: eye('watery', { lookY: 6 }),
     rightEye: eye('watery', { lookY: 6 }),
@@ -115,7 +119,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     rightBrow: { curve: 'sad', rotation: -10, translateY: 4 },
     mouth: mouth('sad')
   }),
-  
+
   disappointed: base({
     leftEye: eye('watery', { scale: 0.9, lookY: 8 }),
     rightEye: eye('watery', { scale: 0.9, lookY: 8 }),
@@ -124,7 +128,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     mouth: mouth('sad'),
     effects: [{ type: 'tear', position: 'right' }]
   }),
-  
+
   angry: base({
     leftEye: eye('fire', { pupilScale: 0.78 }),
     rightEye: eye('fire', { pupilScale: 0.78 }),
@@ -135,7 +139,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     faceAnimation: 'shake',
     cheeks: { visible: false }
   }),
-  
+
   warning: base({
     leftBrow: { curve: 'raised', translateY: -6 },
     rightBrow: { curve: 'raised', translateY: -6 },
@@ -143,7 +147,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     effects: [{ type: 'warning', position: 'right' }],
     faceAnimation: 'pulse'
   }),
-  
+
   worried: base({
     leftEye: eye('watery', { scale: 0.95 }),
     rightEye: eye('watery', { scale: 0.95 }),
@@ -152,7 +156,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     mouth: mouth('squiggly'),
     effects: [{ type: 'tear', position: 'left' }]
   }),
-  
+
   sleepy: base({
     leftEye: eye('closed', { closedType: 'down' }),
     rightEye: eye('closed', { closedType: 'down' }),
@@ -161,7 +165,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     faceAnimation: 'breathe',
     cheeks: { visible: false }
   }),
-  
+
   love: base({
     leftEye: eye('heart', { pupilScale: 0.48 }),
     rightEye: eye('heart', { pupilScale: 0.48 }),
