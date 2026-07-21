@@ -89,16 +89,16 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   curious: base({
     leftEye: eye('open', { scale: 1.1, lookX: 6 }),
     rightEye: eye('open', { scale: 0.95, lookX: 6 }),
-    leftBrow: { curve: 'raised', rotation: -8 },
-    rightBrow: { curve: 'soft', rotation: 4 },
+    leftBrow: { curve: 'soft' },
+    rightBrow: { curve: 'soft' },
     mouth: mouth('o')
   }),
 
   thinking: base({
     leftEye: eye('open', { lookX: -6, lookY: -6 }),
     rightEye: eye('open', { lookX: -6, lookY: -6 }),
-    leftBrow: { curve: 'raised', translateY: -8, rotation: -6 },
-    rightBrow: { curve: 'soft', rotation: 8 },
+    leftBrow: { curve: 'soft' },
+    rightBrow: { curve: 'soft' },
     mouth: { shape: 'frown', translateY: -11 },
     cheeks: { visible: false }
   }),
