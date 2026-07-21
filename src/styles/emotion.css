@@ -159,6 +159,25 @@
   animation: pulse 1.8s ease-in-out infinite;
 }
 
+.face-laugh {
+  animation: laugh 0.75s ease-in-out infinite;
+}
+
+@keyframes laugh {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(-8px) scale(1.025) rotate(-0.5deg);
+  }
+  50% {
+    transform: translateY(1px) scale(0.98) rotate(0.5deg);
+  }
+  75% {
+    transform: translateY(-5px) scale(1.015) rotate(-0.3deg);
+  }
+}
+
 @keyframes bounce {
   50% {
     transform: translateY(-3%) scale(1.01);

@@ -43,6 +43,7 @@ export interface EmotionScreenProps {
   assistantMode?: boolean;
   infoCard?: ReactNode;
   voiceHint?: string;
+  currentState?: string;
 }
 
 // ── Equalizer voice bar ───────────────────────────────────────────────────────
@@ -73,9 +74,9 @@ function VoiceBar({ hint }: { hint: string }) {
 // ── Icon rail (Back / Navigation / Home / Music / Phone) ──────────────────────
 function IconRailAbsolute() {
   const btnStyle: CSSProperties = {
-    width: 'clamp(28px, 3.2vw, 44px)',
-    height: 'clamp(28px, 3.2vw, 44px)',
-    borderRadius: 12,
+    width: 'clamp(38px, 4.2vw, 56px)',
+    height: 'clamp(38px, 4.2vw, 56px)',
+    borderRadius: 15,
     background: 'rgba(255, 255, 255, 0.75)',
     border: '1.5px solid rgba(255, 255, 255, 0.95)',
     boxShadow: '0 4px 12px rgba(15, 23, 42, 0.04)',
@@ -84,9 +85,9 @@ function IconRailAbsolute() {
     justifyContent: 'center',
     color: '#475569',
     cursor: 'pointer',
-    transition: 'all 0.15s',
+    transition: 'background-color 0.15s, border-color 0.15s',
   };
-  const sz = 'clamp(14px, 1.5vw, 20px)';
+  const sz = 'clamp(18px, 2vw, 26px)';
   return (
     <div style={{
       position: 'absolute', zIndex: 6,
@@ -94,39 +95,39 @@ function IconRailAbsolute() {
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between',
     }}>
       {/* Back */}
-      <div style={btnStyle}>
+      <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.94 }} style={btnStyle}>
         <svg viewBox="0 0 24 24" width={sz} height={sz} fill="none" stroke="#6C3BFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
+          <path d="m12 19-7-7 7-7" /><path d="M19 12H5" />
         </svg>
-      </div>
+      </motion.div>
 
       {/* Navigation Pointer */}
-      <div style={btnStyle}>
+      <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.94 }} style={btnStyle}>
         <svg viewBox="0 0 24 24" width={sz} height={sz} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="12 2 19 21 12 17 5 21 12 2"/>
+          <polygon points="12 2 19 21 12 17 5 21 12 2" />
         </svg>
-      </div>
+      </motion.div>
 
       {/* Active Home (Purple) */}
-      <div style={{ ...btnStyle, background: 'rgba(255, 255, 255, 0.85)', borderColor: '#8B5CF6' }}>
+      <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.94 }} style={{ ...btnStyle, background: 'rgba(255, 255, 255, 0.85)', borderColor: '#8B5CF6' }}>
         <svg viewBox="0 0 24 24" width={sz} height={sz} fill="#8B5CF6">
-          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
         </svg>
-      </div>
+      </motion.div>
 
       {/* Music */}
-      <div style={btnStyle}>
+      <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.94 }} style={btnStyle}>
         <svg viewBox="0 0 24 24" width={sz} height={sz} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          <path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" />
         </svg>
-      </div>
+      </motion.div>
 
       {/* Phone */}
-      <div style={btnStyle}>
+      <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.94 }} style={btnStyle}>
         <svg viewBox="0 0 24 24" width={sz} height={sz} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
         </svg>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -143,8 +144,10 @@ export function EmotionScreen({
   assistantMode = false,
   infoCard,
   voiceHint = 'Mình có thể giúp gì cho bạn?',
+  currentState,
 }: EmotionScreenProps) {
   const glowColor = GLOW_MAP[emotion];
+  const isShareLocation = currentState === 'share-location';
 
   return (
     <section className="radxa-screen">
@@ -168,47 +171,45 @@ export function EmotionScreen({
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
+          alignItems: 'flex-start',
           zIndex: 5,
         }}>
           {/* D READY */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1 }}>
-            <span style={{ fontSize: 'clamp(20px, 2.8vw, 36px)', fontWeight: 900, color: '#22C55E', lineHeight: 1 }}>D</span>
-            <span style={{ fontSize: 'clamp(8px, 0.8vw, 11px)', fontWeight: 750, color: '#22C55E', letterSpacing: '0.05em' }}>READY</span>
+            <span style={{ fontSize: 'clamp(24px, 3.4vw, 44px)', fontWeight: 900, color: '#22C55E', lineHeight: 1 }}>D</span>
+            <span style={{ fontSize: 'clamp(10px, 1.1vw, 14px)', fontWeight: 800, color: '#22C55E', letterSpacing: '0.05em' }}>READY</span>
           </div>
 
-          {/* Grouped Speed & Battery */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12 }}>
-            {/* Speed */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-              <span style={{ fontSize: 'clamp(36px, 4.8vw, 68px)', fontWeight: 900, color: '#1e293b', lineHeight: 0.9 }}>{speed}</span>
-              <span style={{ fontSize: 'clamp(8px, 0.8vw, 12px)', color: '#64748b', fontWeight: 650, marginTop: 2 }}>km/h</span>
-            </div>
+          {/* Speed (Centered in the middle of left column) */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <span style={{ fontSize: 'clamp(44px, 5.8vw, 82px)', fontWeight: 900, color: '#1e293b', lineHeight: 0.9 }}>{speed}</span>
+            <span style={{ fontSize: 'clamp(10px, 1.1vw, 15px)', color: '#64748b', fontWeight: 650, marginTop: 2 }}>km/h</span>
+          </div>
 
-            {/* Battery */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4, width: '100%', maxWidth: 'clamp(64px, 7vw, 110px)' }}>
-              <span style={{
-                fontSize: 'clamp(10px, 1.1vw, 15px)',
-                fontWeight: 800,
-                color: battery <= 20 ? '#EF4444' : '#3B82F6',
-                lineHeight: 1
-              }}>{battery}%</span>
-              {/* Solid smooth pill shape battery bar */}
+          {/* Battery (At the bottom of left column) */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4, width: '100%', maxWidth: 'clamp(80px, 8.5vw, 130px)' }}>
+            <span style={{
+              fontSize: 'clamp(12px, 1.3vw, 18px)',
+              fontWeight: 800,
+              color: battery <= 20 ? '#EF4444' : '#3B82F6',
+              lineHeight: 1
+            }}>{battery}%</span>
+            {/* Solid smooth pill shape battery bar */}
+            <div style={{
+              width: '100%',
+              height: 'clamp(10px, 1.1vw, 15px)',
+              border: battery <= 20 ? '1.5px solid #EF4444' : '1.5px solid #3B82F6',
+              borderRadius: 9999,
+              padding: 1.5,
+              display: 'flex',
+              background: 'transparent',
+            }}>
               <div style={{
-                width: '100%',
-                height: 'clamp(8px, 0.9vw, 13px)',
-                border: battery <= 20 ? '1.5px solid #EF4444' : '1.5px solid #3B82F6',
+                width: `${battery}%`,
+                height: '100%',
+                background: battery <= 20 ? '#EF4444' : 'linear-gradient(90deg, #3B82F6, #8B5CF6)',
                 borderRadius: 9999,
-                padding: 1.5,
-                display: 'flex',
-                background: 'transparent',
-              }}>
-                <div style={{
-                  width: `${battery}%`,
-                  height: '100%',
-                  background: battery <= 20 ? '#EF4444' : 'linear-gradient(90deg, #3B82F6, #8B5CF6)',
-                  borderRadius: 9999,
-                }} />
-              </div>
+              }} />
             </div>
           </div>
         </div>
@@ -230,7 +231,7 @@ export function EmotionScreen({
           <div style={{
             position: 'absolute', zIndex: 6,
             left: '25%', right: '25%',
-            top: '48%', bottom: '15%',
+            top: '48%', bottom: '10%',
             display: 'flex', flexDirection: 'column', justifyContent: 'center',
             overflow: 'hidden',
           }}>

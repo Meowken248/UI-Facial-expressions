@@ -30,8 +30,8 @@ const STATE_EMOTION: Record<AssistantState, Emotion> = {
   'calling-rescue':         'relaxed',
   'share-location':         'happy',
   'carrying-friend':        'satisfied',
-  'person-boarding-before': 'relaxed',
-  'person-boarding-after':  'happy',
+  'person-boarding-before': 'proud',
+  'person-boarding-after':  'laughing',
   'trip-purpose':           'happy',
 };
 
@@ -191,6 +191,7 @@ export default function App() {
             assistantMode={assistantMode}
             infoCard={infoCard}
             voiceHint={assistantMode ? VOICE_HINTS[store.state] : undefined}
+            currentState={store.state}
           />
         </div>
       </div>

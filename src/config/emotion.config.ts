@@ -46,7 +46,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     leftEye: eye('closed', { closedType: 'up' }),
     rightEye: eye('closed', { closedType: 'up' }),
     mouth: mouth('laugh'),
-    faceAnimation: 'shake'
+    faceAnimation: 'laugh'
   }),
 
   playful: base({
