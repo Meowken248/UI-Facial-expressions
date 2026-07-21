@@ -9,8 +9,11 @@ export function DashboardStats({ speed, battery, rangeKm }: DashboardStatsProps)
   return (
     <>
       <aside className="stats stats-left" aria-label={`Tốc độ ${speed} kilomet trên giờ, số P`}>
-        <strong>{speed}</strong>
-        <small>km/h</small>
+        <div className="speed-readout">
+          <strong>{speed}</strong>
+          <small>km/h</small>
+        </div>
+        <div className="stat-separator" />
         <div className="gear">P</div>
       </aside>
 
@@ -19,6 +22,7 @@ export function DashboardStats({ speed, battery, rangeKm }: DashboardStatsProps)
           <strong>{rangeKm}</strong>
           <small>km</small>
         </div>
+        <div className="stat-separator" />
         <div className="battery-readout">
           <b>{safeBattery}%</b>
           <span className="battery" aria-hidden="true">
