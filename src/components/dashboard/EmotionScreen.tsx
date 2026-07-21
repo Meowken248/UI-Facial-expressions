@@ -143,9 +143,9 @@ function IconRailLeft() {
         </svg>
       </motion.div>
 
-      {/* 6. Scooter / Vespa - dùng ảnh mẫu */}
+      {/* 6. Scooter / Vespa - dùng ảnh thật đã xóa nền */}
       <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} style={itemStyle}>
-        <img src="/scooter-icon.png" alt="scooter" style={{ width: sz, height: sz, objectFit: 'contain', filter: 'brightness(0) saturate(100%) invert(38%) sepia(100%) saturate(400%) hue-rotate(195deg) brightness(95%)' }} />
+        <img src="/real-scooter-nobg.png" alt="scooter" style={{ width: 'clamp(36px, 4.5vw, 58px)', height: 'clamp(36px, 4.5vw, 58px)', objectFit: 'contain' }} />
       </motion.div>
     </div>
   );
@@ -166,7 +166,7 @@ export function EmotionScreen({
   currentState,
 }: EmotionScreenProps) {
   return (
-    <section className="radxa-screen" style={{ background: '#f4f6f9' }}>
+    <section className="radxa-screen" style={{ background: "url('/bg.png') center/cover no-repeat" }}>
       {/* Background glow removed as requested */}
 
       <DashboardHeader temperature={temperature} />

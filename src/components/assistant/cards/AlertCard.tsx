@@ -21,19 +21,22 @@ export interface AlertCardProps {
 }
 
 const VARIANT_COLORS: Record<AlertVariant, { border: string; iconBg: string }> = {
-  danger:  { border: 'border-red-200',    iconBg: 'bg-red-50'     },
-  warning: { border: 'border-orange-200', iconBg: 'bg-orange-50'  },
-  info:    { border: 'border-blue-200',   iconBg: 'bg-blue-50'    },
-  success: { border: 'border-green-200',  iconBg: 'bg-green-50'   },
+  danger: { border: 'border-white/20', iconBg: '' },
+  warning: { border: 'border-white/20', iconBg: '' },
+  info: { border: 'border-white/20', iconBg: '' },
+  success: { border: 'border-white/20', iconBg: '' },
 };
 
 export function AlertCard({ icon, title, description, actions = [], variant = 'info', extra }: AlertCardProps) {
   const colors = VARIANT_COLORS[variant];
   return (
-    <div className={`bg-white/70 backdrop-blur-sm rounded-2xl border ${colors.border} shadow-sm p-3 flex flex-col gap-2 w-full`}>
+    <div
+      className={`backdrop-blur-md rounded-2xl border ${colors.border} p-3 flex flex-col gap-2 w-full`}
+      style={{ background: 'rgba(255, 255, 255, 0.18)', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}
+    >
       {/* Header */}
       <div className="flex items-center gap-2">
-        <div className={`rounded-xl ${colors.iconBg} p-2 flex-shrink-0`}>
+        <div className="rounded-xl p-2 flex-shrink-0">
           {icon}
         </div>
         <div className="flex flex-col min-w-0">
@@ -54,11 +57,10 @@ export function AlertCard({ icon, title, description, actions = [], variant = 'i
             <button
               key={i}
               onClick={action.onClick}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all active:scale-95 ${
-                action.variant === 'solid'
-                  ? 'text-white shadow-sm'
-                  : 'bg-white/80 border border-slate-200 text-slate-700'
-              }`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold transition-all active:scale-95 ${action.variant === 'solid'
+                ? 'text-white shadow-sm'
+                : 'bg-white/20 border border-white/30 text-slate-700 backdrop-blur-sm'
+                }`}
               style={action.variant === 'solid' && action.color ? { backgroundColor: action.color } : undefined}
             >
               {action.icon && <span className="flex-shrink-0">{action.icon}</span>}

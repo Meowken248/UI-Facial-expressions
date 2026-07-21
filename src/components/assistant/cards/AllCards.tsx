@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 
 /* ── Base card shell ─────────────────────────────────────────────────────────── */
 const cardBase: React.CSSProperties = {
-  background: 'rgba(255, 255, 255, 0.88)',
+  background: 'rgba(255, 255, 255, 0.36)',
   backdropFilter: 'blur(18px)',
   borderRadius: 24,
-  border: '1.5px solid rgba(255, 255, 255, 0.95)',
-  boxShadow: '0 8px 32px rgba(15, 23, 42, 0.04)',
+  border: '1.5px solid rgba(88, 79, 79, 0.2)',
+  boxShadow: '0 8px 32px rgba(31, 41, 66, 0)',
   padding: 'clamp(10px, 1.2vw, 16px)',
   width: '100%',
   boxSizing: 'border-box' as const,
@@ -251,7 +251,7 @@ export function AccidentCard() {
   const progress = (t / 10) * CIRC;
   const ringColor = t <= 3 ? '#EF4444' : '#F97316';
   return (
-    <div style={{ ...cardBase, background: 'rgba(254, 242, 242, 0.92)', borderColor: 'rgba(252, 165, 165, 0.5)' }}>
+    <div style={{ ...cardBase }}>
       {/* Standalone large warning triangle (Enlarged) */}
       <motion.div
         animate={{ scale: [1, 1.06, 1] }}
