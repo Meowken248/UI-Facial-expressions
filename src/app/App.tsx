@@ -23,30 +23,30 @@ import type { AssistantState } from '../types/assistant';
 
 // ── State → Emotion (face expression) ────────────────────────────────────────
 const STATE_EMOTION: Record<AssistantState, Emotion> = {
-  'low-battery':            'worried',
-  'vehicle-error':          'worried',
-  'collision':              'surprised',
-  'accident':               'sad',
-  'calling-rescue':         'relaxed',
-  'share-location':         'happy',
-  'carrying-friend':        'satisfied',
+  'low-battery': 'worried',
+  'vehicle-error': 'worried',
+  'collision': 'surprised',
+  'accident': 'sad',
+  'calling-rescue': 'proud',
+  'share-location': 'happy',
+  'carrying-friend': 'satisfied',
   'person-boarding-before': 'proud',
-  'person-boarding-after':  'laughing',
-  'trip-purpose':           'happy',
+  'person-boarding-after': 'laughing',
+  'trip-purpose': 'happy',
 };
 
 // ── State → battery % ─────────────────────────────────────────────────────────
 const STATE_BATTERY: Record<AssistantState, number> = {
-  'low-battery':            1,
-  'vehicle-error':          86,
-  'collision':              86,
-  'accident':               86,
-  'calling-rescue':         86,
-  'share-location':         86,
-  'carrying-friend':        86,
+  'low-battery': 1,
+  'vehicle-error': 86,
+  'collision': 86,
+  'accident': 86,
+  'calling-rescue': 86,
+  'share-location': 86,
+  'carrying-friend': 86,
   'person-boarding-before': 86,
-  'person-boarding-after':  86,
-  'trip-purpose':           86,
+  'person-boarding-after': 86,
+  'trip-purpose': 86,
 };
 
 const GROUP_A: AssistantState[] = [
@@ -54,45 +54,45 @@ const GROUP_A: AssistantState[] = [
 ];
 
 const VOICE_HINTS: Record<AssistantState, string> = {
-  'low-battery':            'Mình có thể giúp gì cho bạn?',
-  'vehicle-error':          'Mình có thể giúp gì cho bạn?',
-  'collision':              'Mình có thể giúp gì cho bạn?',
-  'accident':               'Mình có thể giúp gì cho bạn?',
-  'calling-rescue':         'Mình có thể giúp gì cho bạn?',
-  'share-location':         'Mình có thể giúp gì cho bạn?',
-  'carrying-friend':        "Nói: \"Chở người thân\"",
+  'low-battery': 'Mình có thể giúp gì cho bạn?',
+  'vehicle-error': 'Mình có thể giúp gì cho bạn?',
+  'collision': 'Mình có thể giúp gì cho bạn?',
+  'accident': 'Mình có thể giúp gì cho bạn?',
+  'calling-rescue': 'Mình có thể giúp gì cho bạn?',
+  'share-location': 'Mình có thể giúp gì cho bạn?',
+  'carrying-friend': "Nói: \"Chở người thân\"",
   'person-boarding-before': "Nói: \"Chở bạn bè\"",
-  'person-boarding-after':  "Nói: \"Chở người thân\"",
-  'trip-purpose':           'Nói hoặc chọn mục tiêu',
+  'person-boarding-after': "Nói: \"Chở người thân\"",
+  'trip-purpose': 'Nói hoặc chọn mục tiêu',
 };
 
 const STATE_LABELS: Record<AssistantState, string> = {
-  'low-battery':            '1. Hết pin',
-  'vehicle-error':          '2. Xe hỏng',
-  'collision':              '3. Va chạm',
-  'accident':               '4. Tai nạn',
-  'calling-rescue':         '5. Gọi cứu hộ',
-  'share-location':         '6. Chia sẻ vị trí',
-  'carrying-friend':        '7. Chở bạn bè',
+  'low-battery': '1. Hết pin',
+  'vehicle-error': '2. Xe hỏng',
+  'collision': '3. Va chạm',
+  'accident': '4. Tai nạn',
+  'calling-rescue': '5. Gọi cứu hộ',
+  'share-location': '6. Chia sẻ vị trí',
+  'carrying-friend': '7. Chở bạn bè',
   'person-boarding-before': '8. Lên xe (trước)',
-  'person-boarding-after':  '9. Lên xe (sau)',
-  'trip-purpose':           '10. Mục đích',
+  'person-boarding-after': '9. Lên xe (sau)',
+  'trip-purpose': '10. Mục đích',
 };
 
 const ALL_STATES = Object.keys(STATE_LABELS) as AssistantState[];
 
 function renderCard(state: AssistantState) {
   switch (state) {
-    case 'low-battery':            return <LowBatteryCard />;
-    case 'vehicle-error':          return <VehicleErrorCard />;
-    case 'collision':              return <CollisionCard />;
-    case 'accident':               return <AccidentCard />;
-    case 'calling-rescue':         return <CallingRescueCard />;
-    case 'share-location':         return <ShareLocationCard />;
-    case 'carrying-friend':        return <CarryingFriendCard />;
+    case 'low-battery': return <LowBatteryCard />;
+    case 'vehicle-error': return <VehicleErrorCard />;
+    case 'collision': return <CollisionCard />;
+    case 'accident': return <AccidentCard />;
+    case 'calling-rescue': return <CallingRescueCard />;
+    case 'share-location': return <ShareLocationCard />;
+    case 'carrying-friend': return <CarryingFriendCard />;
     case 'person-boarding-before': return <BoardingBeforeCard />;
-    case 'person-boarding-after':  return <BoardingAfterCard />;
-    case 'trip-purpose':           return <TripPurposeCard />;
+    case 'person-boarding-after': return <BoardingAfterCard />;
+    case 'trip-purpose': return <TripPurposeCard />;
   }
 }
 

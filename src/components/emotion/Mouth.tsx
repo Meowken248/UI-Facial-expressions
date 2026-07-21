@@ -43,9 +43,12 @@ const paths: Record<MouthConfig['shape'], string> = {
 
   // 11. squiggly (wavy trembling line) - BỐI RỐI, LO LẮNG
   squiggly: 'M60 95 Q80 112 100 95 Q120 78 140 95 Q160 112 180 95',
+
+  // 12. worried-open (distressed open mouth)
+  'worried-open': 'M68 118 C65 92 85 80 110 80 C135 80 155 92 152 118 C148 142 130 145 110 145 C90 145 72 142 68 118 Z',
 };
 
-const FILLED = new Set(['smile', 'open', 'o', 'tongue', 'laugh', 'sleep']);
+const FILLED = new Set(['smile', 'open', 'o', 'tongue', 'laugh', 'sleep', 'worried-open']);
 
 export function Mouth({ config }: { config: MouthConfig }) {
   const shape = config.shape;
@@ -88,13 +91,13 @@ export function Mouth({ config }: { config: MouthConfig }) {
             </g>
           )}
 
-          {(shape === 'open' || shape === 'o' || shape === 'sleep') && (
+          {(shape === 'open' || shape === 'o' || shape === 'sleep' || shape === 'worried-open') && (
             <g clipPath={`url(#${clipId})`}>
               <ellipse
                 cx="110"
-                cy={shape === 'sleep' ? 100 : 105}
-                rx={shape === 'sleep' ? 14 : 17}
-                ry={shape === 'sleep' ? 8 : 12}
+                cy={shape === 'sleep' ? 100 : 108}
+                rx={shape === 'sleep' ? 14 : 20}
+                ry={shape === 'sleep' ? 8 : 15}
                 className="mouth-tongue"
               />
             </g>

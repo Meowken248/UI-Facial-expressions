@@ -153,7 +153,7 @@ export function VehicleErrorCard() {
         transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
         style={iconCircleStyle('#F5F3FF')}
       >
-        <svg width="68%" height="68%" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="68%" height="68%" viewBox="0 0 24 24" fill="#8B5CF6">
           <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
         </svg>
       </motion.div>
@@ -197,14 +197,17 @@ export function CollisionCard() {
         style={{ flexShrink: 0, marginBottom: 4 }}
       >
         <svg width="clamp(76px, 8.5vw, 110px)" height="clamp(60px, 7vw, 90px)" viewBox="0 0 48 36" fill="none">
-          {/* Top rays */}
-          <path d="M24 4v4M17 6l2 3M31 6l-2 3" stroke="#F97316" strokeWidth="2" strokeLinecap="round" />
-          {/* Left collision shape */}
-          <path d="M8 26l8-12 5 4-5 10H8z" fill="#F97316" />
-          {/* Right collision shape */}
-          <path d="M40 26l-8-12-5 4 5 10h8z" fill="#F97316" />
-          {/* Center sparkle */}
-          <path d="M24 10l1.5 4.5L30 16l-4.5 1.5L24 22l-1.5-4.5L18 16l4.5-1.5L24 10z" fill="#F97316" />
+          {/* Tia sáng phía trên */}
+          <path d="M24 3v4M16 5.5l2.2 3.2M32 5.5l-2.2 3.2" stroke="#F97316" strokeWidth="2" strokeLinecap="round" />
+
+          {/* Khối trái - hình cong mềm như ngọn lửa/bàn tay */}
+          <path d="M6 27c-1-6 2-11 8-14 2-1 4 0 4 2s-2 3-3 5c-2 3-1 6 1 8-4 1-8 1-10-1z" fill="#F97316" />
+
+          {/* Khối phải - đối xứng */}
+          <path d="M42 27c1-6-2-11-8-14-2-1-4 0-4 2s2 3 3 5c2 3 1 6-1 8 4 1 8 1 10-1z" fill="#F97316" />
+
+          {/* Ngôi sao lấp lánh trung tâm - đặt SAU CÙNG để không bị che */}
+          <path d="M24 9l1.6 5L31 15.5l-5.4 1.5L24 22l-1.6-5L17 15.5l5.4-1.5L24 9z" fill="#F97316" />
         </svg>
       </motion.div>
 
@@ -256,7 +259,7 @@ export function AccidentCard() {
         style={{ flexShrink: 0, marginBottom: 4 }}
       >
         <svg width="clamp(80px, 9vw, 120px)" height="clamp(70px, 7.8vw, 106px)" viewBox="0 0 32 28" fill="none">
-          <path d="M16 2L2 26h28L16 2z" fill="#EF4444" />
+          <path d="M16 3.5L3.5 24.5h25L16 3.5z" fill="#EF4444" stroke="#EF4444" strokeWidth="3" strokeLinejoin="round" />
           <rect x="15" y="10" width="2" height="8" rx="1" fill="white" />
           <circle cx="16" cy="21" r="1.5" fill="white" />
         </svg>
@@ -324,31 +327,49 @@ export function CallingRescueCard() {
           style={{ position: 'absolute', width: 'clamp(84px, 9vw, 120px)', height: 'clamp(84px, 9vw, 120px)', borderRadius: '50%', border: '2.5px solid #3B82F6' }}
         />
         <div style={{ position: 'relative', width: 'clamp(84px, 9vw, 120px)', height: 'clamp(84px, 9vw, 120px)', borderRadius: '50%', overflow: 'hidden', border: '2.5px solid white', boxShadow: '0 4px 14px rgba(59, 130, 246, 0.15)' }}>
-          {/* Detailed Operator Vector illustration */}
-          <svg width="100%" height="100%" viewBox="0 0 80 80" fill="none">
+          {/* Detailed Operator Vector illustration matching sample */}
+          <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
             {/* Background */}
-            <circle cx="40" cy="40" r="40" fill="#EFF6FF" />
-            {/* Hair back */}
-            <path d="M24 38c0-10 6-16 16-16s16 6 16 16v12H24V38z" fill="#4A3728" />
-            {/* Face */}
-            <path d="M30 38c0-5.5 4.5-10 10-10s10 4.5 10 10v6c0 5.5-4.5 10-10 10s-10-4.5-10-10v-6z" fill="#FDD2C4" />
-            {/* Hair front */}
-            <path d="M24 32c2-8 8-10 16-10s14 2 16 10c0 0-4-6-16-6S24 32 24 32z" fill="#3D2E23" />
-            <path d="M24 32c1 3 3 5 5 2" stroke="#3D2E23" strokeWidth="2" strokeLinecap="round" />
-            {/* Eyes */}
-            <circle cx="36" cy="37" r="2.5" fill="#334155" />
-            <circle cx="44" cy="37" r="2.5" fill="#334155" />
-            {/* Mouth */}
-            <path d="M37 44q3 2 6 0" stroke="#E11D48" strokeWidth="1.8" strokeLinecap="round" />
-            {/* Headphones */}
-            <rect x="22" y="34" width="6" height="12" rx="3" fill="#2563EB" />
-            <rect x="52" y="34" width="6" height="12" rx="3" fill="#2563EB" />
-            <path d="M25 34c0-12 6-15 15-15s15 3 15 15" stroke="#2563EB" strokeWidth="2.5" fill="none" />
-            <path d="M28 42h4c3 0 4 3 4 5" stroke="#2563EB" strokeWidth="2" fill="none" strokeLinecap="round" />
+            <circle cx="50" cy="50" r="48" fill="#2D76E4" />
+            <path d="M 50,2 A 48,48 0 0,1 98,50 L 50,98 Z" fill="#1B5BB7" />
+
+            {/* Long Shadow */}
+            <path d="M 66,40 L 96,70 L 78,96 L 48,66 Z" fill="#13479B" opacity="0.3" />
+
+            {/* Neck */}
+            <path d="M 42,50 L 42,61 C 42,65 58,65 58,61 L 58,50 Z" fill="#FDC4A2" stroke="#1E293B" strokeWidth="2.5" strokeLinejoin="round" />
+            <path d="M 50,50 L 50,62.8 C 53.5,62.8 58,61 58,59 L 58,50 Z" fill="#EAA37F" />
+
+            {/* Tie */}
+            <path d="M 46.5,60 L 53.5,60 L 55,86 L 50,92 L 45,86 Z" fill="#FF7A00" stroke="#1E293B" strokeWidth="2.5" strokeLinejoin="round" />
+
             {/* Shirt */}
-            <path d="M20 62c4-8 10-10 20-10s16 2 20 10H20z" fill="#2563EB" />
-            <path d="M40 52v5" stroke="#FDD2C4" strokeWidth="2" />
-            <path d="M34 57l6 3 6-3" fill="#EFF6FF" />
+            <path d="M 18,78 C 25,65 35,60 50,60 C 65,60 75,65 82,78 L 82,100 L 18,100 Z" fill="#FFFFFF" stroke="#1E293B" strokeWidth="2.5" strokeLinejoin="round" />
+
+            {/* Collar Flaps */}
+            <path d="M 50,60 C 44,60 36,63 36,70 C 36,74 44,74 50,65 Z" fill="#FFFFFF" stroke="#1E293B" strokeWidth="2" strokeLinejoin="round" />
+            <path d="M 50,60 C 56,60 64,63 64,70 C 64,74 56,74 50,65 Z" fill="#FFFFFF" stroke="#1E293B" strokeWidth="2" strokeLinejoin="round" />
+
+            {/* Face base split tone */}
+            <path d="M 34,34 C 34,25 41,20 50,20 C 50,20 50,58 50,58 C 41,58 34,54 34,45 Z" fill="#FDC4A2" />
+            <path d="M 50,20 C 59,20 66,25 66,34 L 66,45 C 66,54 59,58 50,58 Z" fill="#EAA37F" />
+            <path d="M 34,34 C 34,25 41,20 50,20 C 59,20 66,25 66,34 L 66,45 C 66,54 59,58 50,58 C 41,58 34,54 34,45 Z" fill="none" stroke="#1E293B" strokeWidth="2.5" strokeLinejoin="round" />
+
+            {/* Hair base split tone */}
+            <path d="M 34,34 C 34,21 41,15 50,15 L 50,30 C 42,30 34,32 34,34 Z" fill="#704E35" />
+            <path d="M 50,15 C 59,15 66,21 66,34 C 66,32 58,30 50,30 Z" fill="#563C28" />
+            <path d="M 34,34 C 34,21 41,15 50,15 C 59,15 66,21 66,34 C 66,32 58,30 50,30 C 42,30 34,32 34,34 Z" fill="none" stroke="#1E293B" strokeWidth="2.5" strokeLinejoin="round" />
+
+            {/* Headband */}
+            <path d="M 30,34 C 30,19 40,13 50,13 C 60,13 70,19 70,34" fill="none" stroke="#1E293B" strokeWidth="3" strokeLinecap="round" />
+
+            {/* Earcups */}
+            <rect x="28" y="28" width="9" height="16" rx="4.5" fill="#FFFFFF" stroke="#1E293B" strokeWidth="2.5" strokeLinejoin="round" />
+            <rect x="63" y="28" width="9" height="16" rx="4.5" fill="#FFFFFF" stroke="#1E293B" strokeWidth="2.5" strokeLinejoin="round" />
+
+            {/* Microphone */}
+            <path d="M 64,39 C 64,48 58,49 53,49" fill="none" stroke="#1E293B" strokeWidth="2.5" strokeLinecap="round" />
+            <rect x="49" y="46.5" width="5.5" height="5" rx="2.5" fill="#FFFFFF" stroke="#1E293B" strokeWidth="2" />
           </svg>
         </div>
       </div>
@@ -407,49 +428,95 @@ export function ShareLocationCard() {
       {/* Map as Header Background */}
       <div style={{ height: 'clamp(84px, 9vw, 120px)', width: '100%', position: 'relative', background: '#EEF2F6', borderBottom: '1px solid #e2e8f0' }}>
         {/* Vector Grid Map Background with Perspective Roads & Land Zones */}
-        <svg width="100%" height="100%" viewBox="0 0 200 84" preserveAspectRatio="xMidYMid slice">
-          <rect width="200" height="84" fill="#F4F6F9"/>
-          
-          {/* Faded green land zones (Parks) */}
-          <path d="M -10,-10 L 55,-10 L 45,35 L -10,25 Z" fill="#EBFDF5" stroke="#D1FAE5" strokeWidth="0.5"/>
-          <path d="M 145,-10 L 210,-10 L 210,45 L 155,30 Z" fill="#EBFDF5" stroke="#D1FAE5" strokeWidth="0.5"/>
-          <path d="M -10,65 L 50,55 L 35,95 L -10,95 Z" fill="#EBFDF5" stroke="#D1FAE5" strokeWidth="0.5"/>
-          <path d="M 155,95 L 210,65 L 210,95 Z" fill="#EBFDF5" stroke="#D1FAE5" strokeWidth="0.5"/>
+        <svg width="100%" height="100%" viewBox="0 0 200 68" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            {/* 1. Linear gradient + Radial gradient for background */}
+            <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#FFFFFF" />
+              <stop offset="100%" stopColor="#EEF0FB" />
+            </linearGradient>
+            <radialGradient id="bgCover" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
+            </radialGradient>
+
+            {/* 2. Gaussian blur for soft park blobs */}
+            <filter id="parkBlur">
+              <feGaussianBlur stdDeviation="3.5" />
+            </filter>
+
+            {/* 4. Landing Glow Gradient */}
+            <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.38" />
+              <stop offset="60%" stopColor="#7C3AED" stopOpacity="0.14" />
+              <stop offset="100%" stopColor="#7C3AED" stopOpacity="0" />
+            </radialGradient>
+
+            {/* 5. Pin Gradient */}
+            <linearGradient id="pinGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#9061F9" />
+              <stop offset="100%" stopColor="#6D28D9" />
+            </linearGradient>
+          </defs>
+
+          {/* Map Base with Gradients */}
+          <rect width="200" height="68" fill="url(#bgGrad)" />
+          <rect width="200" height="68" fill="url(#bgCover)" />
+
+          {/* Faded green land zones (Soft blurred park blobs) */}
+          <ellipse cx="25" cy="12" rx="18" ry="10" fill="#D8F5E8" opacity="0.5" filter="url(#parkBlur)" />
+          <ellipse cx="178" cy="15" rx="16" ry="8" fill="#D8F5E8" opacity="0.5" filter="url(#parkBlur)" />
+          <ellipse cx="38" cy="54" rx="14" ry="7" fill="#D8F5E8" opacity="0.5" filter="url(#parkBlur)" />
+          <ellipse cx="165" cy="48" rx="12" ry="6" fill="#D8F5E8" opacity="0.5" filter="url(#parkBlur)" />
 
           {/* Perspective grid lines */}
-          <line x1="100" y1="56" x2="-20" y2="-10" stroke="#E2E8F0" strokeWidth="0.8" opacity="0.6"/>
-          <line x1="100" y1="56" x2="220" y2="-10" stroke="#E2E8F0" strokeWidth="0.8" opacity="0.6"/>
-          <line x1="100" y1="56" x2="-20" y2="100" stroke="#E2E8F0" strokeWidth="0.8" opacity="0.6"/>
-          <line x1="100" y1="56" x2="220" y2="100" stroke="#E2E8F0" strokeWidth="0.8" opacity="0.6"/>
-          
-          {/* Main roads */}
-          <path d="M -20,62 Q 60,48 100,56 T 220,50" stroke="#FFFFFF" strokeWidth="8" fill="none" opacity="0.9"/>
-          <path d="M -20,62 Q 60,48 100,56 T 220,50" stroke="#E2E8F0" strokeWidth="1.5" fill="none"/>
-          
-          <path d="M 100,94 Q 90,65 100,56 T 110,-10" stroke="#FFFFFF" strokeWidth="6" fill="none" opacity="0.9"/>
-          <path d="M 100,94 Q 90,65 100,56 T 110,-10" stroke="#E2E8F0" strokeWidth="1.5" fill="none"/>
+          <line x1="100" y1="46" x2="-20" y2="-10" stroke="#E2E8F0" strokeWidth="0.8" opacity="0.5" />
+          <line x1="100" y1="46" x2="220" y2="-10" stroke="#E2E8F0" strokeWidth="0.8" opacity="0.5" />
+          <line x1="100" y1="46" x2="-20" y2="78" stroke="#E2E8F0" strokeWidth="0.8" opacity="0.5" />
+          <line x1="100" y1="46" x2="220" y2="78" stroke="#E2E8F0" strokeWidth="0.8" opacity="0.5" />
 
-          <path d="M -10,0 Q 50,30 100,56" stroke="#FFFFFF" strokeWidth="5" fill="none" opacity="0.8"/>
-          <path d="M -10,0 Q 50,30 100,56" stroke="#E2E8F0" strokeWidth="1" fill="none"/>
-          
-          <path d="M 210,95 Q 150,70 100,56" stroke="#FFFFFF" strokeWidth="5" fill="none" opacity="0.8"/>
-          <path d="M 210,95 Q 150,70 100,56" stroke="#E2E8F0" strokeWidth="1" fill="none"/>
-          
-          {/* Static pin landing shadow target on the road intersection (centered vertically at 56px) */}
-          <ellipse cx="100" cy="56" rx="8" ry="3.2" fill="#7C3AED" opacity="0.16"/>
-          <ellipse cx="100" cy="56" rx="3.5" ry="1.6" fill="#7C3AED" opacity="0.35"/>
+          {/* Roads: Borders (Drawn first) */}
+          {/* Main roads */}
+          <path d="M -20,52 Q 60,38 100,46 T 220,40" stroke="#D6DCE8" strokeWidth="13" fill="none" opacity="0.5" strokeLinecap="round" />
+          <path d="M 100,78 Q 90,57 100,46 T 110,-10" stroke="#D6DCE8" strokeWidth="11" fill="none" opacity="0.5" strokeLinecap="round" />
+
+          {/* Diagonal roads */}
+          <path d="M -10,12 Q 50,34 100,46" stroke="#D6DCE8" strokeWidth="10" fill="none" opacity="0.5" strokeLinecap="round" />
+          <path d="M 210,78 Q 150,62 100,46" stroke="#D6DCE8" strokeWidth="10" fill="none" opacity="0.5" strokeLinecap="round" />
+          <path d="M -20,78 L 100,46" stroke="#D6DCE8" strokeWidth="10" fill="none" opacity="0.5" strokeLinecap="round" />
+          <path d="M 220,0 L 100,46" stroke="#D6DCE8" strokeWidth="10" fill="none" opacity="0.5" strokeLinecap="round" />
+
+          {/* Roads: White Center Fills (Drawn on top) */}
+          <path d="M -20,52 Q 60,38 100,46 T 220,40" stroke="#FFFFFF" strokeWidth="11" fill="none" strokeLinecap="round" opacity="0.95" />
+          <path d="M 100,78 Q 90,57 100,46 T 110,-10" stroke="#FFFFFF" strokeWidth="9" fill="none" strokeLinecap="round" opacity="0.95" />
+          <path d="M -10,12 Q 50,34 100,46" stroke="#FFFFFF" strokeWidth="8" fill="none" strokeLinecap="round" opacity="0.9" />
+          <path d="M 210,78 Q 150,62 100,46" stroke="#FFFFFF" strokeWidth="8" fill="none" strokeLinecap="round" opacity="0.9" />
+          <path d="M -20,78 L 100,46" stroke="#FFFFFF" strokeWidth="8" fill="none" strokeLinecap="round" opacity="0.9" />
+          <path d="M 220,0 L 100,46" stroke="#FFFFFF" strokeWidth="8" fill="none" strokeLinecap="round" opacity="0.9" />
+
+          {/* Radial Landing Glow */}
+          <ellipse cx="100" cy="46" rx="22" ry="9" fill="url(#pinGlow)" />
         </svg>
-        {/* Bouncing pin anchored exactly on the shadow at 56px */}
+
+        {/* Bouncing pin anchored exactly on the shadow at 68% top (Y=46) */}
         <div
-          style={{ position: 'absolute', top: '56px', left: '50%', transform: 'translate(-50%, -100%)', transformOrigin: 'bottom center', zIndex: 3 }}
+          style={{
+            position: 'absolute',
+            top: '68%',
+            left: '50%',
+            transform: 'translate(-50%, -100%)',
+            transformOrigin: 'bottom center',
+            zIndex: 3
+          }}
         >
           <motion.div
             animate={{ y: [0, -7, 0] }}
             transition={{ repeat: Infinity, duration: 1.4, ease: 'easeInOut' }}
+            style={{ filter: 'drop-shadow(0 6px 8px rgba(109,40,217,0.35))' }}
           >
-            <svg width="clamp(28px, 3.2vw, 42px)" height="clamp(34px, 3.8vw, 52px)" viewBox="0 0 24 30">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 9 12 18 12 18s12-9 12-18c0-6.63-5.37-12-12-12z" fill="#7C3AED" />
-              <circle cx="12" cy="11" r="5" fill="white" />
+            <svg width="clamp(33px, 3.7vw, 49px)" height="clamp(41px, 4.5vw, 61px)" viewBox="0 0 24 30">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 9 12 18 12 18s12-9 12-18c0-6.63-5.37-12-12-12z" fill="url(#pinGradient)" />
+              <circle cx="12" cy="11" r="5" fill="white" stroke="#F3E8FF" strokeWidth="1" />
             </svg>
           </motion.div>
         </div>
@@ -642,8 +709,16 @@ export function TripPurposeCard() {
             transition: 'all 0.15s',
             boxShadow: selected === p.id ? `0 2px 8px ${p.border}33` : 'none',
           }}>
-            <span style={{ fontSize: 'clamp(16px,1.8vw,24px)' }}>{p.icon}</span>
-            <span style={{ fontSize: 'clamp(8px,0.8vw,11px)', fontWeight: 700, color: '#334155', lineHeight: 1.2, textAlign: 'center' }}>{p.label}</span>
+            <div style={{
+              width: 'clamp(44px, 5vw, 64px)',
+              height: 'clamp(44px, 5vw, 64px)',
+              borderRadius: '50%',
+              background: selected === p.id ? p.bg : '#F8FAFC',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 'clamp(26px, 3.2vw, 40px)',
+              flexShrink: 0,
+            }}>{p.icon}</div>
+            <span style={{ fontSize: 'clamp(9px,0.85vw,11px)', fontWeight: 700, color: '#334155', lineHeight: 1.2, textAlign: 'center' }}>{p.label}</span>
           </button>
         ))}
       </div>

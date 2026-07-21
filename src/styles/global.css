@@ -75,12 +75,15 @@ main {
   main {
     padding: 4px;
   }
+
   .stage {
     padding: 2px;
   }
+
   .device-frame {
     border-radius: 20px;
   }
+
   .controls {
     margin-top: 8px;
   }

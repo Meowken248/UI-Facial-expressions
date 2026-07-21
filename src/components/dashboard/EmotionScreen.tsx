@@ -7,6 +7,24 @@ import { DashboardStats } from './DashboardStats';
 import { BottomNavigation } from './BottomNavigation';
 import type { ReactNode } from 'react';
 
+/* ── Battery shimmer keyframe injected once ── */
+const BATTERY_STYLE = `
+@keyframes batteryShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes batteryPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+`;
+if (typeof document !== 'undefined' && !document.getElementById('battery-anim-style')) {
+  const s = document.createElement('style');
+  s.id = 'battery-anim-style';
+  s.textContent = BATTERY_STYLE;
+  document.head.appendChild(s);
+}
+
 // ── Ambient glow color per emotion group ─────────────────────────────────────
 const GLOW_MAP: Record<Emotion, string> = {
   happy: 'rgba(250,204,21, 0.10)',
@@ -22,7 +40,7 @@ const GLOW_MAP: Record<Emotion, string> = {
   curious: 'rgba(14, 165,233, 0.11)',
   thinking: 'rgba(148,163,184, 0.08)',
   confused: 'rgba(168,85, 247, 0.09)',
-  sad: 'rgba(14, 165,233, 0.12)',
+  sad: 'rgba(239,68,  68, 0.12)',
   disappointed: 'rgba(100,116,139, 0.09)',
   angry: 'rgba(239,68,  68, 0.14)',
   warning: 'rgba(239,68,  68, 0.11)',
@@ -188,13 +206,19 @@ export function EmotionScreen({
 
           {/* Battery (At the bottom of left column) */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4, width: '100%', maxWidth: 'clamp(80px, 8.5vw, 130px)' }}>
-            <span style={{
-              fontSize: 'clamp(12px, 1.3vw, 18px)',
-              fontWeight: 800,
-              color: battery <= 20 ? '#EF4444' : '#3B82F6',
-              lineHeight: 1
-            }}>{battery}%</span>
-            {/* Solid smooth pill shape battery bar */}
+            {/* Battery % — pulses red when low */}
+            <motion.span
+              animate={battery <= 20 ? { opacity: [1, 0.4, 1] } : { opacity: 1 }}
+              transition={battery <= 20 ? { repeat: Infinity, duration: 1, ease: 'easeInOut' } : {}}
+              style={{
+                fontSize: 'clamp(12px, 1.3vw, 18px)',
+                fontWeight: 800,
+                color: battery <= 20 ? '#EF4444' : '#3B82F6',
+                lineHeight: 1,
+              }}
+            >{battery}%</motion.span>
+
+            {/* Animated shimmer battery bar */}
             <div style={{
               width: '100%',
               height: 'clamp(10px, 1.1vw, 15px)',
@@ -203,13 +227,22 @@ export function EmotionScreen({
               padding: 1.5,
               display: 'flex',
               background: 'transparent',
+              overflow: 'hidden',
             }}>
-              <div style={{
-                width: `${battery}%`,
-                height: '100%',
-                background: battery <= 20 ? '#EF4444' : 'linear-gradient(90deg, #3B82F6, #8B5CF6)',
-                borderRadius: 9999,
-              }} />
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${battery}%` }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                  height: '100%',
+                  borderRadius: 9999,
+                  background: battery <= 20
+                    ? 'linear-gradient(90deg, #EF4444, #FCA5A5, #EF4444)'
+                    : 'linear-gradient(90deg, #3B82F6 0%, #8B5CF6 40%, #C084FC 60%, #3B82F6 100%)',
+                  backgroundSize: '200% 100%',
+                  animation: 'batteryShimmer 2.4s linear infinite',
+                }}
+              />
             </div>
           </div>
         </div>

@@ -9,7 +9,9 @@ function getBrowPath(curve: BrowConfig['curve'], side: 'left' | 'right') {
     return side === 'left' ? 'M 65,42 Q 105,52 145,72' : 'M 65,72 Q 105,52 145,42';
   }
   if (curve === 'sad') {
-    return side === 'left' ? 'M 65,70 Q 96,26 145,42' : 'M 65,42 Q 114,26 145,70';
+    return side === 'left'
+      ? 'M 35,42 C 75,30 115,48 155,78 C 161,82 158,90 150,88 C 115,74 75,64 35,54 Z'
+      : 'M 175,42 C 135,30 95,48 55,78 C 49,82 52,90 60,88 C 95,74 135,64 175,54 Z';
   }
   if (curve === 'raised') {
     return side === 'left' ? 'M 65,58 Q 105,10 145,54' : 'M 65,54 Q 105,10 145,58';
@@ -28,8 +30,8 @@ function getBrowPath(curve: BrowConfig['curve'], side: 'left' | 'right') {
 
 export function Eyebrow({ config, side }: { config: BrowConfig; side: 'left' | 'right' }) {
   const d = getBrowPath(config.curve, side);
-  const isTapered = !config.curve || config.curve === 'soft' || config.curve === 'thinking';
-  const color = config.curve === 'angry' ? '#35175f' : (side === 'left' ? '#058cff' : '#8b5cf6');
+  const isTapered = !config.curve || config.curve === 'soft' || config.curve === 'thinking' || config.curve === 'sad';
+  const color = config.color ?? (config.curve === 'angry' ? '#35175f' : (side === 'left' ? '#058cff' : '#8b5cf6'));
 
   return (
     <motion.svg

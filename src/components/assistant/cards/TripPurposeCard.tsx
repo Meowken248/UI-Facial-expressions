@@ -31,7 +31,7 @@ export function TripPurposeCard({ selected = 'friend', onSelect }: TripPurposeCa
               }`}
             >
               <div
-                className="w-8 h-8 rounded-full flex items-center justify-center text-lg"
+                className="w-14 h-14 rounded-full flex items-center justify-center text-3xl"
                 style={{ backgroundColor: p.bgColor }}
               >
                 {p.icon}
