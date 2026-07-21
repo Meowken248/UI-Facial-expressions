@@ -99,13 +99,13 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
         <linearGradient id={`${id}-ringBlue`} x1="12%" y1="18%" x2="88%" y2="82%">
           <stop offset="0%" stopColor="#7fdcff" />
           <stop offset="18%" stopColor="#2f9fe8" />
-          <stop offset="48%" stopColor="#0d3a6e" />
+          <stop offset="48%" stopColor="#082546" />
           <stop offset="100%" stopColor="#020a16" />
         </linearGradient>
         <linearGradient id={`${id}-ringPurple`} x1="88%" y1="18%" x2="12%" y2="82%">
           <stop offset="0%" stopColor="#d9b8ff" />
           <stop offset="18%" stopColor="#a15ff0" />
-          <stop offset="48%" stopColor="#4a1980" />
+          <stop offset="48%" stopColor="#200a36" />
           <stop offset="100%" stopColor="#0a0414" />
         </linearGradient>
 
@@ -137,6 +137,9 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
         <filter id={`${id}-inner-shadow`} x="-10%" y="-10%" width="120%" height="120%">
           <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000" floodOpacity="0.4" />
         </filter>
+        <clipPath id={`${id}-fire-lid-clip`}>
+          <path d={side === 'left' ? 'M 24,52 Q 110,72 196,87 L 196,178 L 24,178 Z' : 'M 196,52 Q 110,72 24,87 L 24,178 L 196,178 Z'} />
+        </clipPath>
       </defs>
 
       {/* ── Closed / Wink line ── */}
@@ -175,6 +178,7 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
             exit={{ opacity: 0, scaleY: 0.05 }}
             transition={SPRING_BLINK}
             style={{ transformOrigin: '110px 90px', transformBox: 'fill-box' }}
+            clipPath={isFire ? `url(#${id}-fire-lid-clip)` : undefined}
           >
             <ellipse className="eye-shell" cx="110" cy="90" rx="82" ry="79"
               filter={isSpiral ? undefined : `url(#${id}-inner-shadow)`}
@@ -184,7 +188,7 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
                 strokeWidth: isSpiral ? 7 : 9,
               }} />
             {/* Confused spiral eyes stay clean and have no outer lash tab. */}
-            {!isSpiral && (
+            {!isSpiral && !isFire && (
               <rect className="eye-lash" x={lashX} y={lashY} width={LASH_W} height={LASH_H}
                 rx={LASH_H / 2} ry={LASH_H / 2} />
             )}
@@ -212,6 +216,7 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
             exit={{ opacity: 0, scale: 0.2 }}
             transition={SPRING_IRIS}
             style={{ transformOrigin: '110px 90px', transformBox: 'fill-box' }}
+            clipPath={isFire ? `url(#${id}-fire-lid-clip)` : undefined}
           >
             {/* Gaze layer — follows pointer via CSS var */}
             <motion.g
@@ -228,7 +233,7 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
                   <motion.circle
                     cx="110" cy="90"
                     fill="none"
-                    stroke={isHeart ? `url(#${id}-ringPurple)` : (side === 'left' ? `url(#${id}-ringBlue)` : `url(#${id}-ringPurple)`)}
+                    stroke={isFire ? '#d82218' : (isHeart ? `url(#${id}-ringPurple)` : (side === 'left' ? `url(#${id}-ringBlue)` : `url(#${id}-ringPurple)`))}
                     strokeWidth={17 * hs}
                     opacity="0.88"
                     animate={{ r: pupilR + 9 }}
@@ -238,7 +243,7 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
                   <motion.circle
                     cx="110" cy="90"
                     fill="none"
-                    stroke={isHeart ? '#df9bff' : (side === 'left' ? '#36c8ff' : '#b781ff')}
+                    stroke={isFire ? '#ff7a45' : (isHeart ? '#df9bff' : (side === 'left' ? '#36c8ff' : '#b781ff'))}
                     strokeWidth={7 * hs}
                     opacity="0.42"
                     animate={{ r: pupilR + 4 }}
@@ -262,7 +267,7 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
                       ? 'M 49,124 A 73,73 0 0 0 153,151'
                       : 'M 67,151 A 73,73 0 0 0 171,124'}
                     fill="none"
-                    stroke={isHeart ? '#f3b0dd' : (side === 'left' ? '#8beaff' : '#d2b0ff')}
+                    stroke={isFire ? '#ff6a35' : (isHeart ? '#f3b0dd' : (side === 'left' ? '#8beaff' : '#d2b0ff'))}
                     strokeWidth={5 * hs}
                     strokeLinecap="round"
                     opacity="0.54"
@@ -329,12 +334,21 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
               )}
 
               {isFire && (
-                <motion.path
-                  d="M 85,125 C 65,95 90,80 80,50 C 105,60 100,75 110,80 C 115,65 130,55 125,35 C 150,60 155,100 130,125 Z"
-                  fill="#f97316" opacity="0.9"
-                  animate={{ scaleY: [1, 1.15, 0.98, 1.12, 1], skewX: [0, 2, -2, 1, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.4, ease: 'easeInOut' }}
-                  style={{ transformOrigin: '110px 125px', transformBox: 'fill-box' }}
+                <motion.g
+                  animate={{ scaleY: [1, 1.08, 0.97, 1.05, 1], skewX: [0, 1.5, -1.5, 1, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.25, ease: 'easeInOut' }}
+                  style={{ transformOrigin: '110px 130px', transformBox: 'fill-box' }}
+                >
+                  <path d="M68 132 C55 109 72 91 84 74 C86 94 97 96 103 76 C111 91 116 96 124 80 C132 62 138 54 134 39 C162 70 169 108 147 132 Z" fill="#e53119" />
+                  <path d="M78 132 C68 113 84 101 94 82 C98 105 110 99 113 84 C126 105 136 95 139 75 C153 99 151 118 140 132 Z" fill="#ff811d" />
+                  <path d="M91 132 C86 118 98 109 104 94 C109 112 117 108 121 96 C132 111 134 122 130 132 Z" fill="#ffe34d" />
+                  <path d="M101 131 C100 121 108 114 112 106 C117 118 123 122 121 131 Z" fill="#fff6a3" />
+                </motion.g>
+              )}
+              {isFire && (
+                <path
+                  d={side === 'left' ? 'M 37,52 Q 107,76 178,88' : 'M 183,52 Q 113,76 42,88'}
+                  fill="none" stroke="#09070b" strokeWidth="18" strokeLinecap="round"
                 />
               )}
               {isWatery && (

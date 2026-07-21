@@ -133,9 +133,9 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   angry: base({
     leftEye: eye('fire', { pupilScale: 0.78 }),
     rightEye: eye('fire', { pupilScale: 0.78 }),
-    leftBrow: { curve: 'angry', rotation: 16, translateY: 6 },
-    rightBrow: { curve: 'angry', rotation: -16, translateY: 6 },
-    mouth: mouth('frown'),
+    leftBrow: { curve: 'angry', rotation: 16, translateY: 32 },
+    rightBrow: { curve: 'angry', rotation: -16, translateY: 32 },
+    mouth: mouth('angry'),
     effects: [{ type: 'anger', position: 'top' }],
     faceAnimation: 'shake',
     cheeks: { visible: false }

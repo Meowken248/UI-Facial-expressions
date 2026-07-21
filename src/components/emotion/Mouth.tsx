@@ -26,6 +26,9 @@ const paths: Record<MouthConfig['shape'], string> = {
   // 6. frown - TỨC GIẬN, SUY TƯ
   frown: 'M70 108 Q110 82 150 108',
 
+  // Angry: deeper, tighter downturned curve, separate from thinking.
+  angry: 'M62 119 Q110 66 158 119',
+
   // 7. tongue (open mouth with tongue sticking down) - TINH NGHỊCH
   tongue: 'M68 74 Q110 91 152 74 Q145 104 110 105 Q75 104 68 74 Z',
 

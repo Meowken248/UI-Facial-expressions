@@ -29,7 +29,7 @@ function getBrowPath(curve: BrowConfig['curve'], side: 'left' | 'right') {
 export function Eyebrow({ config, side }: { config: BrowConfig; side: 'left' | 'right' }) {
   const d = getBrowPath(config.curve, side);
   const isTapered = !config.curve || config.curve === 'soft' || config.curve === 'thinking';
-  const color = side === 'left' ? '#058cff' : '#8b5cf6';
+  const color = config.curve === 'angry' ? '#35175f' : (side === 'left' ? '#058cff' : '#8b5cf6');
 
   return (
     <motion.svg
@@ -39,7 +39,7 @@ export function Eyebrow({ config, side }: { config: BrowConfig; side: 'left' | '
       animate={{
         x: config.translateX ?? 0,
         y: config.translateY ?? 0,
-        scale: 0.68,
+        scale: config.curve === 'angry' ? 1 : 0.68,
         rotate: config.rotation ?? 0,
       }}
       transition={SPRING}
