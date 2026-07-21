@@ -15,7 +15,9 @@ const base = (overrides: Partial<EmotionConfig> = {}): EmotionConfig => ({
 });
 
 export const emotionConfigs: Record<Emotion, EmotionConfig> = {
-  happy: base(),
+  happy: base({
+    mouth: mouth('small-smile')
+  }),
 
   excited: base({
     leftEye: eye('star'),
@@ -118,7 +120,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     rightEye: eye('watery', { lookY: 6 }),
     leftBrow: { curve: 'thinking' },
     rightBrow: { curve: 'thinking' },
-    mouth: mouth('sad')
+    mouth: { shape: 'worried-open', translateY: -12 }
   }),
 
   disappointed: base({

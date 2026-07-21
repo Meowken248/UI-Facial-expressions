@@ -45,7 +45,7 @@ const paths: Record<MouthConfig['shape'], string> = {
   squiggly: 'M60 95 Q80 112 100 95 Q120 78 140 95 Q160 112 180 95',
 
   // 12. worried-open (distressed open mouth)
-  'worried-open': 'M68 118 C65 92 85 80 110 80 C135 80 155 92 152 118 C148 142 130 145 110 145 C90 145 72 142 68 118 Z',
+  'worried-open': 'M58 118 C58 98 80 90 110 90 C140 90 162 98 162 118 C162 135 140 138 110 138 C80 138 58 135 58 118 Z',
 };
 
 const FILLED = new Set(['smile', 'open', 'o', 'tongue', 'laugh', 'sleep', 'worried-open']);
@@ -91,7 +91,7 @@ export function Mouth({ config }: { config: MouthConfig }) {
             </g>
           )}
 
-          {(shape === 'open' || shape === 'o' || shape === 'sleep' || shape === 'worried-open') && (
+          {(shape === 'open' || shape === 'o' || shape === 'sleep') && (
             <g clipPath={`url(#${clipId})`}>
               <ellipse
                 cx="110"
@@ -100,6 +100,14 @@ export function Mouth({ config }: { config: MouthConfig }) {
                 ry={shape === 'sleep' ? 8 : 15}
                 className="mouth-tongue"
               />
+            </g>
+          )}
+          {shape === 'worried-open' && (
+            <g clipPath={`url(#${clipId})`}>
+              {/* Distressed upper teeth clipped by top lip */}
+              <path d="M 40,98 Q 110,104 180,98 L 180,50 L 40,50 Z" fill="#FFFFFF" />
+              {/* Pink tongue at the bottom clipped by bottom lip */}
+              <path d="M 40,126 Q 110,122 180,126 L 180,160 L 40,160 Z" fill="#f04061ff" />
             </g>
           )}
           {shape === 'tongue' && (

@@ -103,7 +103,7 @@ export default function App() {
   const [autoBlink, setAutoBlink] = useState(true);
   const [followPointer, setFollowPointer] = useState(true);
   const [animated, setAnimated] = useState(true);
-  const [assistantMode, setAssistantMode] = useState(false);
+  const [assistantMode, setAssistantMode] = useState(true);
   const screenRef = useRef<HTMLDivElement>(null);
 
   const fullscreen = useCallback(async () => {
@@ -142,40 +142,7 @@ export default function App() {
 
   return (
     <main>
-      {/* ── Top row ── */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8, gap: 12 }}>
-        {/* State selector pills */}
-        {assistantMode ? (
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-            {ALL_STATES.map((s) => {
-              const isGroupA = GROUP_A.includes(s);
-              const isActive = store.state === s;
-              return (
-                <button key={s} onClick={() => store.setState(s)} style={{
-                  padding: '5px 12px', borderRadius: 20, fontSize: 12, fontWeight: 600, cursor: 'pointer',
-                  border: isActive ? 'none' : '1.5px solid #e2e8f0',
-                  background: isActive ? (isGroupA ? '#EF4444' : '#3B82F6') : '#fff',
-                  color: isActive ? '#fff' : '#475569',
-                  transition: 'all 0.15s',
-                  boxShadow: isActive ? '0 2px 8px rgba(0,0,0,0.15)' : 'none',
-                }}>
-                  {STATE_LABELS[s]}
-                </button>
-              );
-            })}
-          </div>
-        ) : <div />}
 
-        {/* Toggle button */}
-        <button onClick={() => setAssistantMode(v => !v)} style={{
-          padding: '7px 18px', borderRadius: 20, flexShrink: 0,
-          background: assistantMode ? '#64748B' : 'linear-gradient(135deg,#8B5CF6,#3B82F6)',
-          color: 'white', fontWeight: 700, fontSize: 13, border: 'none', cursor: 'pointer',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.2)', whiteSpace: 'nowrap',
-        }}>
-          {assistantMode ? '⬅ Biểu cảm' : '🚗 Smart Assistant'}
-        </button>
-      </div>
 
       {/* ── Device frame ── */}
       <div className="stage" ref={screenRef}>
@@ -196,8 +163,27 @@ export default function App() {
         </div>
       </div>
 
-      {/* ── Emotion controls (only in emotion mode) ── */}
-      {!assistantMode && (
+      {/* ── State selector pills (below device frame) ── */}
+      {assistantMode ? (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
+          {ALL_STATES.map((s) => {
+            const isGroupA = GROUP_A.includes(s);
+            const isActive = store.state === s;
+            return (
+              <button key={s} onClick={() => store.setState(s)} style={{
+                padding: '5px 12px', borderRadius: 20, fontSize: 12, fontWeight: 600, cursor: 'pointer',
+                border: isActive ? 'none' : '1.5px solid #e2e8f0',
+                background: isActive ? (isGroupA ? '#EF4444' : '#3B82F6') : '#fff',
+                color: isActive ? '#fff' : '#475569',
+                transition: 'all 0.15s',
+                boxShadow: isActive ? '0 2px 8px rgba(0,0,0,0.15)' : 'none',
+              }}>
+                {STATE_LABELS[s]}
+              </button>
+            );
+          })}
+        </div>
+      ) : (
         <EmotionControls
           emotion={controller.emotion}
           onSelect={controller.setEmotion}
