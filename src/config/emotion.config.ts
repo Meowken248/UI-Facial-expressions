@@ -154,8 +154,7 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     rightEye: eye('watery', { scale: 0.95 }),
     leftBrow: { curve: 'thinking' },
     rightBrow: { curve: 'thinking' },
-    mouth: mouth('squiggly'),
-    effects: [{ type: 'tear', position: 'left' }]
+    mouth: mouth('sad')
   }),
 
   sleepy: base({

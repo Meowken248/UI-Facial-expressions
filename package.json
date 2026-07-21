@@ -12,18 +12,24 @@
   "dependencies": {
     "@vitejs/plugin-react": "latest",
     "framer-motion": "^12.42.2",
+    "lucide-react": "^1.25.0",
     "react": "latest",
     "react-dom": "latest",
-    "vite": "latest"
+    "vite": "latest",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@eslint/js": "latest",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "autoprefixer": "^10.5.4",
     "eslint": "9.39.2",
     "eslint-plugin-react-hooks": "latest",
     "eslint-plugin-react-refresh": "latest",
     "globals": "latest",
+    "postcss": "^8.5.20",
+    "tailwindcss": "^4.3.3",
     "typescript": "5.9.3",
     "typescript-eslint": "latest"
   }

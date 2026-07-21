@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.assistant-face {
+  inset: 6% 28% 48% !important;
+}
