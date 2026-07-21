@@ -32,8 +32,8 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
     // doesn't match the glossy glass-eye reference at all.
     leftEye: eye('open', { scale: 1.15 }),
     rightEye: eye('open', { scale: 1.15 }),
-    leftBrow: { curve: 'raised', translateY: -12 },
-    rightBrow: { curve: 'raised', translateY: -12 },
+    leftBrow: { curve: 'soft' },
+    rightBrow: { curve: 'soft' },
     mouth: mouth('o')
   }),
 
@@ -66,8 +66,8 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   proud: base({
     leftEye: eye('open', { scale: 0.95 }),
     rightEye: eye('open', { scale: 0.95 }),
-    leftBrow: { curve: 'raised' },
-    rightBrow: { curve: 'raised' },
+    leftBrow: { curve: 'soft' },
+    rightBrow: { curve: 'soft' },
     mouth: mouth('small-smile')
   }),
 
@@ -97,8 +97,8 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   thinking: base({
     leftEye: eye('open', { lookX: -6, lookY: -6 }),
     rightEye: eye('open', { lookX: -6, lookY: -6 }),
-    leftBrow: { curve: 'soft' },
-    rightBrow: { curve: 'soft' },
+    leftBrow: { curve: 'thinking' },
+    rightBrow: { curve: 'thinking' },
     mouth: { shape: 'frown', translateY: -11 },
     cheeks: { visible: false }
   }),
@@ -106,8 +106,8 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   confused: base({
     leftEye: eye('spiral', { scale: 0.82 }),
     rightEye: eye('spiral', { scale: 0.82 }),
-    leftBrow: { curve: 'sad', rotation: -4, translateY: 2 },
-    rightBrow: { curve: 'sad', rotation: 4, translateY: 2 },
+    leftBrow: { curve: 'thinking' },
+    rightBrow: { curve: 'thinking' },
     mouth: { shape: 'squiggly', scaleX: 0.78, translateY: -3 },
     cheeks: { visible: false },
     faceAnimation: 'breathe'
@@ -116,16 +116,16 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   sad: base({
     leftEye: eye('watery', { lookY: 6 }),
     rightEye: eye('watery', { lookY: 6 }),
-    leftBrow: { curve: 'sad', rotation: 10, translateY: 4 },
-    rightBrow: { curve: 'sad', rotation: -10, translateY: 4 },
+    leftBrow: { curve: 'thinking' },
+    rightBrow: { curve: 'thinking' },
     mouth: mouth('sad')
   }),
 
   disappointed: base({
     leftEye: eye('watery', { scale: 0.9, lookY: 8 }),
     rightEye: eye('watery', { scale: 0.9, lookY: 8 }),
-    leftBrow: { curve: 'sad', translateY: 6 },
-    rightBrow: { curve: 'sad', translateY: 6 },
+    leftBrow: { curve: 'thinking' },
+    rightBrow: { curve: 'thinking' },
     mouth: mouth('sad'),
     effects: [{ type: 'tear', position: 'right' }]
   }),
@@ -142,8 +142,8 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   }),
 
   warning: base({
-    leftBrow: { curve: 'raised', translateY: -6 },
-    rightBrow: { curve: 'raised', translateY: -6 },
+    leftBrow: { curve: 'soft' },
+    rightBrow: { curve: 'soft' },
     mouth: mouth('open'),
     effects: [{ type: 'warning', position: 'right' }],
     faceAnimation: 'pulse'
@@ -152,8 +152,8 @@ export const emotionConfigs: Record<Emotion, EmotionConfig> = {
   worried: base({
     leftEye: eye('watery', { scale: 0.95 }),
     rightEye: eye('watery', { scale: 0.95 }),
-    leftBrow: { curve: 'sad', rotation: 8 },
-    rightBrow: { curve: 'sad', rotation: -8 },
+    leftBrow: { curve: 'thinking' },
+    rightBrow: { curve: 'thinking' },
     mouth: mouth('squiggly'),
     effects: [{ type: 'tear', position: 'left' }]
   }),

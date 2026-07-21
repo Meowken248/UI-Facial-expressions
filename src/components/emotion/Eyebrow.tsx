@@ -14,6 +14,11 @@ function getBrowPath(curve: BrowConfig['curve'], side: 'left' | 'right') {
   if (curve === 'raised') {
     return side === 'left' ? 'M 65,58 Q 105,10 145,54' : 'M 65,54 Q 105,10 145,58';
   }
+  if (curve === 'thinking') {
+    return side === 'left'
+      ? 'M 42,79 C 75,78 115,65 153,40 C 160,36 168,40 169,48 C 170,56 165,62 157,65 C 118,78 79,89 47,90 C 40,90 37,84 42,79 Z'
+      : 'M 168,79 C 135,78 95,65 57,40 C 50,36 42,40 41,48 C 40,56 45,62 53,65 C 92,78 131,89 163,90 C 170,90 173,84 168,79 Z';
+  }
   // Soft brow: a shallow, asymmetric arc. Its rounded head faces the centre,
   // then it tapers into a small outer tail, as in the reference image.
   return side === 'left'
@@ -23,7 +28,7 @@ function getBrowPath(curve: BrowConfig['curve'], side: 'left' | 'right') {
 
 export function Eyebrow({ config, side }: { config: BrowConfig; side: 'left' | 'right' }) {
   const d = getBrowPath(config.curve, side);
-  const isTapered = !config.curve || config.curve === 'soft';
+  const isTapered = !config.curve || config.curve === 'soft' || config.curve === 'thinking';
   const color = side === 'left' ? '#058cff' : '#8b5cf6';
 
   return (
@@ -34,7 +39,7 @@ export function Eyebrow({ config, side }: { config: BrowConfig; side: 'left' | '
       animate={{
         x: config.translateX ?? 0,
         y: config.translateY ?? 0,
-        scale: 0.95,
+        scale: 0.68,
         rotate: config.rotation ?? 0,
       }}
       transition={SPRING}
