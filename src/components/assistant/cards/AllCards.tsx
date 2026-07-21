@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 
 /* ── Base card shell ─────────────────────────────────────────────────────────── */
 const cardBase: React.CSSProperties = {
-  background: 'rgba(255, 255, 255, 0.85)',
-  backdropFilter: 'blur(16px)',
+  background: 'rgba(255, 255, 255, 0.88)',
+  backdropFilter: 'blur(18px)',
   borderRadius: 24,
   border: '1.5px solid rgba(255, 255, 255, 0.95)',
   boxShadow: '0 8px 32px rgba(15, 23, 42, 0.04)',
-  padding: 'clamp(10px, 1.2vw, 18px)',
+  padding: 'clamp(12px, 1.4vw, 20px)',
   width: '100%',
   boxSizing: 'border-box' as const,
   display: 'flex',
@@ -76,6 +76,18 @@ function Btn({ label, icon, color, solid, onClick }: { label: string; icon?: Rea
   );
 }
 
+// Helper for top circular icon background
+const iconCircleStyle = (bgColor: string): React.CSSProperties => ({
+  width: 'clamp(36px, 4vw, 54px)',
+  height: 'clamp(36px, 4vw, 54px)',
+  borderRadius: '50%',
+  background: bgColor,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+});
+
 /* ═══ 1. HẾT PIN ════════════════════════════════════════════════════════════════ */
 export function LowBatteryCard() {
   return (
@@ -83,12 +95,12 @@ export function LowBatteryCard() {
       <motion.div
         animate={{ opacity: [1, 0.4, 1] }}
         transition={{ repeat: Infinity, duration: 1.2 }}
-        style={{ flexShrink: 0 }}
+        style={{ flexShrink: 0, marginBottom: 8 }}
       >
-        <svg width="clamp(36px, 4.2vw, 54px)" height="clamp(28px, 3.2vw, 42px)" viewBox="0 0 32 26" fill="none">
-          <rect x="2" y="2" width="24" height="22" rx="5" stroke="#EF4444" strokeWidth="2.5"/>
-          <path d="M29 9v8" stroke="#EF4444" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M16 6l-4 6h6l-4 6" stroke="#EF4444" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+        <svg width="clamp(64px, 7vw, 96px)" height="clamp(34px, 3.8vw, 52px)" viewBox="0 0 44 24" fill="none">
+          <rect x="2" y="2" width="36" height="20" rx="4" stroke="#EF4444" strokeWidth="2.5"/>
+          <path d="M41 8v8" stroke="#EF4444" strokeWidth="2.5" strokeLinecap="round"/>
+          <path d="M21 6l-4 6h6l-4 6" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </motion.div>
 
@@ -122,8 +134,8 @@ export function LowBatteryCard() {
 export function VehicleErrorCard() {
   return (
     <div style={cardBase}>
-      <div style={{ flexShrink: 0 }}>
-        <svg width="clamp(32px, 3.8vw, 56px)" height="clamp(32px, 3.8vw, 56px)" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <div style={iconCircleStyle('#F5F3FF')}>
+        <svg width="55%" height="55%" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
         </svg>
       </div>
@@ -159,13 +171,13 @@ export function CollisionCard() {
   return (
     <div style={cardBase}>
       <motion.div
-        animate={{ x: [-2, 2, -2] }}
-        transition={{ repeat: Infinity, duration: 0.25, ease: 'easeInOut' }}
-        style={{ flexShrink: 0 }}
+        animate={{ scale: [1, 1.08, 1] }}
+        transition={{ repeat: Infinity, duration: 0.6 }}
+        style={iconCircleStyle('#FFF7ED')}
       >
-        <svg width="clamp(32px, 3.8vw, 56px)" height="clamp(32px, 3.8vw, 56px)" viewBox="0 0 24 24">
-          <polygon points="12,2 22,20 2,20" fill="#F97316" stroke="#EA580C" strokeWidth="1.2"/>
-          <text x="12" y="17" textAnchor="middle" fontSize="10" fontWeight="bold" fill="white">!</text>
+        <svg width="60%" height="60%" viewBox="0 0 24 24" fill="none" stroke="#F97316" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M16.24 16.24l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          <circle cx="12" cy="12" r="3" fill="#F97316"/>
         </svg>
       </motion.div>
 
@@ -209,21 +221,21 @@ export function AccidentCard() {
   const progress = (t / 10) * CIRC;
   const ringColor = t <= 3 ? '#EF4444' : '#F97316';
   return (
-    <div style={cardBase}>
+    <div style={{ ...cardBase, background: 'rgba(254, 242, 242, 0.9)', borderColor: 'rgba(252, 165, 165, 0.6)' }}>
       <motion.div
         animate={{ scale: [1, 1.12, 1] }}
         transition={{ repeat: Infinity, duration: 0.6 }}
-        style={{ flexShrink: 0 }}
+        style={iconCircleStyle('#FEF2F2')}
       >
-        <svg width="clamp(32px, 3.8vw, 56px)" height="clamp(32px, 3.8vw, 56px)" viewBox="0 0 24 24" fill="#EF4444">
+        <svg width="60%" height="60%" viewBox="0 0 24 24" fill="#EF4444">
           <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
           <line x1="12" y1="9" x2="12" y2="13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
           <circle cx="12" cy="17" r="1" fill="white"/>
         </svg>
       </motion.div>
 
-      <p style={titleStyle}>Nghi ngờ tai nạn</p>
-      <p style={subtitleStyle}>Tự động gọi hỗ trợ sau 10 giây</p>
+      <p style={{ ...titleStyle, color: '#991B1B' }}>Nghi ngờ tai nạn</p>
+      <p style={{ ...subtitleStyle, color: '#991B1B', opacity: 0.85 }}>Tự động gọi hỗ trợ sau 10 giây</p>
 
       {/* Countdown ring */}
       <svg width="clamp(32px, 3.5vw, 48px)" height="clamp(32px, 3.5vw, 48px)" viewBox="0 0 40 40" style={{ flexShrink: 0, marginTop: 8 }}>
@@ -249,7 +261,7 @@ export function AccidentCard() {
         <Btn
           label="Chia sẻ vị trí"
           icon={
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
               <circle cx="12" cy="10" r="3"/>
             </svg>
@@ -272,8 +284,8 @@ export function CallingRescueCard() {
   return (
     <div style={{ ...cardBase, gap: 6 }}>
       {/* Avatar */}
-      <div style={{ width: 'clamp(44px,5vw,64px)', height: 'clamp(44px,5vw,64px)', borderRadius: '50%', background: 'linear-gradient(135deg,#818CF8,#60A5FA)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', border: '2px solid white', boxShadow: '0 2px 10px rgba(99,102,241,0.3)' }}>
-        <svg width="70%" height="70%" viewBox="0 0 40 40" fill="none">
+      <div style={{ width: 'clamp(56px,6vw,80px)', height: 'clamp(56px,6vw,80px)', borderRadius: '50%', background: 'linear-gradient(135deg,#818CF8,#60A5FA)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', border: '2.5px solid white', boxShadow: '0 4px 14px rgba(99,102,241,0.2)' }}>
+        <svg width="85%" height="85%" viewBox="0 0 40 40" fill="none">
           <circle cx="20" cy="14" r="8" fill="#C7D2FE"/>
           <ellipse cx="20" cy="34" rx="14" ry="9" fill="#C7D2FE"/>
           <circle cx="20" cy="13" r="6" fill="#E0E7FF"/>
@@ -282,7 +294,7 @@ export function CallingRescueCard() {
       <div>
         <p style={{ ...titleStyle, margin: '4px 0 0' }}>Đang gọi cứu hộ</p>
         <p style={subtitleStyle}>Trung tâm hỗ trợ 24/7</p>
-        <p style={{ fontSize: 'clamp(12px,1.4vw,18px)', fontWeight: 700, color: '#334155', fontFamily: 'monospace', margin: '4px 0 0' }}>{mm}:{ss}</p>
+        <p style={{ fontSize: 'clamp(14px,1.6vw,20px)', fontWeight: 800, color: '#1e293b', fontFamily: 'monospace', margin: '4px 0 0' }}>{mm}:{ss}</p>
       </div>
       <motion.button
         whileTap={{ scale: 0.9 }}
@@ -300,8 +312,8 @@ export function CallingRescueCard() {
 export function ShareLocationCard() {
   return (
     <div style={cardBase}>
-      <div style={{ flexShrink: 0 }}>
-        <svg width="clamp(32px, 3.8vw, 56px)" height="clamp(32px, 3.8vw, 56px)" viewBox="0 0 24 24" fill="none">
+      <div style={iconCircleStyle('#F5F3FF')}>
+        <svg width="60%" height="60%" viewBox="0 0 24 24" fill="none">
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="#8B5CF6" opacity=".15" stroke="#8B5CF6" strokeWidth="2"/>
           <circle cx="12" cy="10" r="3" fill="#8B5CF6"/>
         </svg>
@@ -311,14 +323,14 @@ export function ShareLocationCard() {
       <p style={subtitleStyle}>Người thân có thể theo dõi vị trí của bạn.</p>
 
       {/* Fake map */}
-      <div style={{ margin: '8px 0', borderRadius: 12, overflow: 'hidden', height: 'clamp(32px,4vw,52px)', width: '100%', position: 'relative', background: '#EEF2FF', border: '1px solid #e2e8f0' }}>
-        <svg width="100%" height="100%" viewBox="0 0 200 52" preserveAspectRatio="xMidYMid slice">
-          <rect width="200" height="52" fill="#EEF2FF"/>
-          <line x1="0" y1="26" x2="200" y2="26" stroke="#C7D2FE" strokeWidth="8"/>
-          <line x1="60" y1="0" x2="60" y2="52" stroke="#C7D2FE" strokeWidth="6"/>
-          <line x1="140" y1="0" x2="140" y2="52" stroke="#C7D2FE" strokeWidth="5"/>
-          <rect x="70" y="8" width="25" height="16" rx="3" fill="#DDD6FE"/>
-          <rect x="18" y="30" width="20" height="12" rx="3" fill="#DDD6FE"/>
+      <div style={{ margin: '8px 0', borderRadius: 12, overflow: 'hidden', height: 'clamp(44px,5vw,64px)', width: '100%', position: 'relative', background: '#EEF2FF', border: '1px solid #e2e8f0' }}>
+        <svg width="100%" height="100%" viewBox="0 0 200 64" preserveAspectRatio="xMidYMid slice">
+          <rect width="200" height="64" fill="#EEF2FF"/>
+          <line x1="0" y1="32" x2="200" y2="32" stroke="#C7D2FE" strokeWidth="8"/>
+          <line x1="60" y1="0" x2="60" y2="64" stroke="#C7D2FE" strokeWidth="6"/>
+          <line x1="140" y1="0" x2="140" y2="64" stroke="#C7D2FE" strokeWidth="5"/>
+          <rect x="70" y="12" width="25" height="18" rx="3" fill="#DDD6FE"/>
+          <rect x="18" y="38" width="20" height="14" rx="3" fill="#DDD6FE"/>
         </svg>
         {/* Pin */}
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-80%)' }}>
@@ -363,17 +375,17 @@ export function CarryingFriendCard() {
   };
   return (
     <div style={customCardBase}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
         <div>
           <p style={{ ...titleStyle, margin: 0 }}>Chở bạn bè</p>
           <p style={subtitleStyle}>Tải trọng hiện tại</p>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 4 }}>
-            <span style={{ fontSize: 'clamp(22px,3vw,42px)', fontWeight: 900, color: '#1e293b', lineHeight: 1 }}>120</span>
-            <span style={{ fontSize: 'clamp(8px,0.85vw,12px)', color: '#94a3b8', fontWeight: 500 }}>kg / 250 kg</span>
+            <span style={{ fontSize: 'clamp(26px, 3.5vw, 48px)', fontWeight: 900, color: '#1e293b', lineHeight: 1 }}>120</span>
+            <span style={{ fontSize: 'clamp(9px, 0.9vw, 13px)', color: '#94a3b8', fontWeight: 600 }}>kg / 250 kg</span>
           </div>
         </div>
         {/* Two-people icon */}
-        <svg width="clamp(28px,3.2vw,44px)" height="clamp(28px,3.2vw,44px)" viewBox="0 0 40 40" fill="none" style={{ flexShrink: 0 }}>
+        <svg width="clamp(32px, 3.8vw, 54px)" height="clamp(32px, 3.8vw, 54px)" viewBox="0 0 40 40" fill="none" style={{ flexShrink: 0 }}>
           <circle cx="13" cy="11" r="6" fill="#C4B5FD"/>
           <ellipse cx="13" cy="27" rx="9" ry="6" fill="#C4B5FD"/>
           <circle cx="27" cy="11" r="6" fill="#DDD6FE"/>
@@ -393,21 +405,22 @@ export function BoardingBeforeCard() {
   };
   return (
     <div style={customCardBase}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
         <div>
           <p style={{ ...titleStyle, margin: 0 }}>Có người lên xe</p>
+          <p style={subtitleStyle}>Tải trọng hiện tại</p>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 4 }}>
-            <span style={{ fontSize: 'clamp(22px,3vw,42px)', fontWeight: 900, color: '#1e293b', lineHeight: 1 }}>0</span>
-            <span style={{ fontSize: 'clamp(8px,0.85vw,12px)', color: '#94a3b8', fontWeight: 500 }}>kg / 250 kg</span>
+            <span style={{ fontSize: 'clamp(26px, 3.5vw, 48px)', fontWeight: 900, color: '#1e293b', lineHeight: 1 }}>0</span>
+            <span style={{ fontSize: 'clamp(9px, 0.9vw, 13px)', color: '#94a3b8', fontWeight: 600 }}>kg / 250 kg</span>
           </div>
         </div>
         {/* Person + down arrow */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, flexShrink: 0 }}>
-          <svg width="clamp(22px,2.5vw,34px)" height="clamp(22px,2.5vw,34px)" viewBox="0 0 32 32" fill="none">
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, flexShrink: 0 }}>
+          <svg width="clamp(28px, 3vw, 42px)" height="clamp(28px, 3vw, 42px)" viewBox="0 0 32 32" fill="none">
             <circle cx="16" cy="9" r="6" fill="#CBD5E1"/>
             <ellipse cx="16" cy="24" rx="10" ry="6" fill="#CBD5E1"/>
           </svg>
-          <svg width="clamp(12px,1.4vw,18px)" height="clamp(12px,1.4vw,18px)" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
           </svg>
         </div>
@@ -421,12 +434,15 @@ function useAnimatedCounter(target: number) {
   const [value, setValue] = React.useState(0);
   const prev = React.useRef(0);
   React.useEffect(() => {
-    const start = prev.current; const end = target; const t0 = performance.now();
+    const start = prev.current;
+    const end = target;
+    const t0 = performance.now();
     const tick = (now: number) => {
       const p = Math.min((now - t0) / 700, 1);
       const ease = 1 - Math.pow(1 - p, 3);
       setValue(Math.round(start + (end - start) * ease));
-      if (p < 1) requestAnimationFrame(tick); else prev.current = target;
+      if (p < 1) requestAnimationFrame(tick);
+      else prev.current = target;
     };
     requestAnimationFrame(tick);
   }, [target]);
@@ -442,21 +458,22 @@ export function BoardingAfterCard() {
   };
   return (
     <div style={customCardBase}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
         <div>
           <p style={{ ...titleStyle, margin: 0 }}>Có người lên xe</p>
+          <p style={subtitleStyle}>Tải trọng hiện tại</p>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginTop: 4 }}>
-            <span style={{ fontSize: 'clamp(22px,3vw,42px)', fontWeight: 900, color: '#7C3AED', lineHeight: 1 }}>{weight}</span>
-            <span style={{ fontSize: 'clamp(8px,0.85vw,12px)', color: '#94a3b8', fontWeight: 500 }}>kg / 250 kg</span>
+            <span style={{ fontSize: 'clamp(26px, 3.5vw, 48px)', fontWeight: 900, color: '#7C3AED', lineHeight: 1 }}>{weight}</span>
+            <span style={{ fontSize: 'clamp(9px, 0.9vw, 13px)', color: '#94a3b8', fontWeight: 600 }}>kg / 250 kg</span>
           </div>
         </div>
         {/* Person + up arrow (purple) */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, flexShrink: 0 }}>
-          <svg width="clamp(22px,2.5vw,34px)" height="clamp(22px,2.5vw,34px)" viewBox="0 0 32 32" fill="none">
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, flexShrink: 0 }}>
+          <svg width="clamp(28px, 3vw, 42px)" height="clamp(28px, 3vw, 42px)" viewBox="0 0 32 32" fill="none">
             <circle cx="16" cy="9" r="6" fill="#8B5CF6"/>
             <ellipse cx="16" cy="24" rx="10" ry="6" fill="#8B5CF6"/>
           </svg>
-          <svg width="clamp(12px,1.4vw,18px)" height="clamp(12px,1.4vw,18px)" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
           </svg>
         </div>
