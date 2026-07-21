@@ -1,7 +1,7 @@
 .stats-right{
   top:31%;
   right:4.4%;
-  width:clamp(82px,10.5vw,176px);
+  width:clamp(68px,8.6vw,142px);
   align-items:stretch;
   color:#071326;
   font-variant-numeric:tabular-nums;
@@ -14,14 +14,14 @@
   white-space:nowrap;
 }
 .stats-right .range-readout strong{
-  font-size:clamp(38px,5.55vw,106px);
+  font-size:clamp(31px,4.45vw,84px);
   font-weight:500;
   line-height:.82;
   letter-spacing:-.065em;
 }
 .stats-right .range-readout small{
   color:#5d6980;
-  font-size:clamp(8px,.78vw,15px);
+  font-size:clamp(7px,.66vw,12px);
   font-weight:500;
   line-height:1;
 }
@@ -29,11 +29,11 @@
   display:flex;
   flex-direction:column;
   align-items:center;
-  margin-top:clamp(13px,1.5vw,29px);
+  margin-top:clamp(10px,1.18vw,22px);
 }
 .battery-readout b{
   color:#111b31;
-  font-size:clamp(9px,.92vw,18px);
+  font-size:clamp(8px,.74vw,14px);
   font-weight:750;
   line-height:1;
 }

@@ -36,12 +36,17 @@ function WarningSVG({ size = 110 }: { size?: number }) {
   );
 }
 
-function AngerSVG({ size = 44 }: { size?: number }) {
+function AngerSVG({ size = 60 }: { size?: number }) {
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} fill="none"
       stroke="#dc2626" strokeWidth="3" strokeLinecap="round"
       style={{ filter: 'drop-shadow(0 2px 6px rgba(220,38,38,0.4))' }}>
-      <path d="M4 12c4.4 0 8-3.6 8-8M12 20c0-4.4 3.6-8 8-8M20 12c-4.4 0-8 3.6-8 8M12 4c0 4.4-3.6 8-8 8" />
+      <>
+        <path d="M10 3 C10 6.8 8.5 9 5 9" />
+        <path d="M14 3 C14 6.8 15.5 9 19 9" />
+        <path d="M21 14 C17.2 14 15 15.5 15 19" />
+        <path d="M9 21 C9 17.2 7.5 15 4 15" />
+      </>
     </svg>
   );
 }
@@ -65,10 +70,10 @@ function TearDrop({ delay = 0, offsetX = 0 }: { delay?: number; offsetX?: number
       style={{ position: 'absolute', x: offsetX }}
       initial={{ opacity: 0, y: 0, scaleY: 0.3, scaleX: 0.6 }}
       animate={{
-        opacity:  [0, 1,   1,   0.8, 0],
-        y:        [0, 10,  28,  52,  72],
-        scaleY:   [0.3, 1, 1.1, 0.9, 0.7],
-        scaleX:   [0.6, 1, 0.9, 0.85, 0.8],
+        opacity: [0, 1, 1, 0.8, 0],
+        y: [0, 10, 28, 52, 72],
+        scaleY: [0.3, 1, 1.1, 0.9, 0.7],
+        scaleX: [0.6, 1, 0.9, 0.85, 0.8],
       }}
       transition={{
         duration: 1.8,
@@ -99,13 +104,13 @@ function TearDrop({ delay = 0, offsetX = 0 }: { delay?: number; offsetX?: number
 function TearStream({ side }: { side: 'left' | 'right' }) {
   const baseStyle: React.CSSProperties =
     side === 'left'
-      ? { position: 'absolute', left: '23%',  top: '60%' }
+      ? { position: 'absolute', left: '23%', top: '60%' }
       : { position: 'absolute', right: '22%', top: '60%' };
 
   return (
     <div style={baseStyle}>
-      <TearDrop delay={0}    offsetX={-6} />
-      <TearDrop delay={0.85} offsetX={6}  />
+      <TearDrop delay={0} offsetX={-6} />
+      <TearDrop delay={0.85} offsetX={6} />
     </div>
   );
 }
@@ -114,7 +119,7 @@ function TearStream({ side }: { side: 'left' | 'right' }) {
 function FloatHeart({ n }: { n: number }) {
   const floatX = [-14, 18, -26][n] ?? 0;
   const positions: React.CSSProperties[] = [
-    { position: 'absolute', left: '2%',  top: '26%' },
+    { position: 'absolute', left: '2%', top: '26%' },
     { position: 'absolute', right: '4%', top: '17%' },
     { position: 'absolute', right: '10%', top: '48%' },
   ];
@@ -133,8 +138,8 @@ function FloatHeart({ n }: { n: number }) {
 // ─── Sparkles ─────────────────────────────────────────────────────────────────
 function FloatSparkle({ n }: { n: number }) {
   const positions: React.CSSProperties[] = [
-    { position: 'absolute', left: '2%',  top: '12%' },
-    { position: 'absolute', right: '3%', top: '8%'  },
+    { position: 'absolute', left: '2%', top: '12%' },
+    { position: 'absolute', right: '3%', top: '8%' },
     { position: 'absolute', left: '10%', top: '55%' },
   ];
   return (
@@ -158,9 +163,9 @@ function FloatZzz({ n }: { n: number }) {
       initial={{ opacity: 0, y: 16, scale: scale * 0.5 }}
       animate={{
         opacity: [0, 0.9, 0.8, 0],
-        y:       [16, -10, -40, -70],
-        x:       [0, 12, 20, 30],
-        scale:   [scale * 0.5, scale, scale, scale * 0.8],
+        y: [16, -10, -40, -70],
+        x: [0, 12, 20, 30],
+        scale: [scale * 0.5, scale, scale, scale * 0.8],
       }}
       transition={{ duration: 3.5, delay: n * 0.85, repeat: Infinity, ease: 'easeOut' }}
     >
@@ -207,13 +212,13 @@ function ThinkingHand() {
 
 // ─── Main component ───────────────────────────────────────────────────────────
 export function EmotionEffects({ effects = [] }: { effects?: EffectConfig[] }) {
-  const hearts   = effects.filter(e => e.type === 'heart');
+  const hearts = effects.filter(e => e.type === 'heart');
   const sparkles = effects.filter(e => e.type === 'sparkle' || e.type === 'star');
-  const zzzes    = effects.filter(e => e.type === 'zzz');
-  const tears    = effects.filter(e => e.type === 'tear');
+  const zzzes = effects.filter(e => e.type === 'zzz');
+  const tears = effects.filter(e => e.type === 'tear');
   const warnings = effects.filter(e => e.type === 'warning');
-  const angers   = effects.filter(e => e.type === 'anger');
-  const hands    = effects.filter(e => e.type === 'thinking-hand');
+  const angers = effects.filter(e => e.type === 'anger');
+  const hands = effects.filter(e => e.type === 'thinking-hand');
 
   return (
     <div className="effects" aria-hidden="true">

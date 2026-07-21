@@ -335,7 +335,7 @@ export const Eye = memo(function Eye({ config, side, blinking }: Props) {
 
               {isFire && (
                 <motion.g
-                  animate={{ scaleY: [1, 1.08, 0.97, 1.05, 1], skewX: [0, 1.5, -1.5, 1, 0] }}
+                  animate={{ scale: [0.76, 0.81, 0.74, 0.79, 0.76], y: [28, 26, 29, 27, 28], skewX: [0, 1.5, -1.5, 1, 0] }}
                   transition={{ repeat: Infinity, duration: 1.25, ease: 'easeInOut' }}
                   style={{ transformOrigin: '110px 130px', transformBox: 'fill-box' }}
                 >
