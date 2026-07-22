@@ -31,7 +31,7 @@ export function AlertCard({ icon, title, description, actions = [], variant = 'i
   const colors = VARIANT_COLORS[variant];
   return (
     <div
-      className={`backdrop-blur-md rounded-2xl border ${colors.border} p-3 flex flex-col gap-2 w-full`}
+      className={`backdrop-blur-md rounded-2xl border ${colors.border} p-2.5 flex flex-col gap-2 w-full`}
       style={{ background: 'rgba(255, 255, 255, 0.18)', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}
     >
       {/* Header */}

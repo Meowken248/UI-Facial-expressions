@@ -251,12 +251,13 @@ export function EmotionScreen({
           {/* Center-bottom info card slot — positioned perfectly relative to navigation and stats */}
           <div style={{
             position: 'absolute', zIndex: 6,
-            left: 'clamp(64px, 16%, 220px)',
-            right: 'clamp(64px, 16%, 220px)',
-            top: '48%',
-            bottom: '11%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'min(90%, 680px)',
+            top: '57%',
+            bottom: '10%',
             display: 'flex', flexDirection: 'column', justifyContent: 'center',
-            overflow: 'hidden',
+            overflow: 'visible',
           }}>
             {infoCard}
           </div>

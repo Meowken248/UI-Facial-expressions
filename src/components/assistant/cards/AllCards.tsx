@@ -7,7 +7,7 @@ const cardBase: React.CSSProperties = {
   backdropFilter: 'blur(18px)',
   borderRadius: 24,
   border: '1.5px solid rgba(88, 79, 79, 0.2)',
-  boxShadow: '0 8px 32px rgba(31, 41, 66, 0)',
+  boxShadow: '0 8px 32px rgba(27, 37, 61, 0)',
   padding: 'clamp(10px, 1.2vw, 16px)',
   width: '100%',
   boxSizing: 'border-box' as const,
@@ -82,8 +82,8 @@ function Btn({ label, icon, borderColor, color, onClick }: { label: string; icon
 
 // Helper for top circular icon background (Enlarged)
 const iconCircleStyle = (bgColor: string): React.CSSProperties => ({
-  width: 'clamp(80px, 8.5vw, 120px)',
-  height: 'clamp(80px, 8.5vw, 120px)',
+  width: 'clamp(50px, 5.5vw, 76px)',
+  height: 'clamp(50px, 5.5vw, 76px)',
   borderRadius: '50%',
   background: bgColor,
   display: 'flex',
@@ -251,14 +251,14 @@ export function AccidentCard() {
   const progress = (t / 10) * CIRC;
   const ringColor = t <= 3 ? '#EF4444' : '#F97316';
   return (
-    <div style={{ ...cardBase }}>
+    <div style={cardBase}>
       {/* Standalone large warning triangle (Enlarged) */}
       <motion.div
         animate={{ scale: [1, 1.06, 1] }}
         transition={{ repeat: Infinity, duration: 0.6, ease: 'easeOut' }}
         style={{ flexShrink: 0, marginBottom: 4 }}
       >
-        <svg width="clamp(80px, 9vw, 120px)" height="clamp(70px, 7.8vw, 106px)" viewBox="0 0 32 28" fill="none">
+        <svg width="clamp(58px, 6.8vw, 88px)" height="clamp(51px, 6vw, 78px)" viewBox="0 0 32 28" fill="none">
           <path d="M16 3.5L3.5 24.5h25L16 3.5z" fill="#EF4444" stroke="#EF4444" strokeWidth="3" strokeLinejoin="round" />
           <rect x="15" y="10" width="2" height="8" rx="1" fill="white" />
           <circle cx="16" cy="21" r="1.5" fill="white" />
@@ -318,15 +318,15 @@ export function CallingRescueCard() {
   const mm = String(Math.floor(s / 60)).padStart(2, '0');
   const ss = String(s % 60).padStart(2, '0');
   return (
-    <div style={{ ...cardBase, gap: 5 }}>
+    <div style={{ ...cardBase, gap: 3 }}>
       {/* Circle operator avatar wrapper (Enlarged) */}
-      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 2 }}>
+      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 1 }}>
         <motion.div
           animate={{ scale: [0.98, 1.3, 0.98], opacity: [0.4, 0, 0.4] }}
           transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
-          style={{ position: 'absolute', width: 'clamp(84px, 9vw, 120px)', height: 'clamp(84px, 9vw, 120px)', borderRadius: '50%', border: '2.5px solid #3B82F6' }}
+          style={{ position: 'absolute', width: 'clamp(60px, 7vw, 84px)', height: 'clamp(60px, 7vw, 84px)', borderRadius: '50%', border: '2px solid #3B82F6' }}
         />
-        <div style={{ position: 'relative', width: 'clamp(84px, 9vw, 120px)', height: 'clamp(84px, 9vw, 120px)', borderRadius: '50%', overflow: 'hidden', border: '2.5px solid white', boxShadow: '0 4px 14px rgba(59, 130, 246, 0.15)' }}>
+        <div style={{ position: 'relative', width: 'clamp(60px, 7vw, 84px)', height: 'clamp(60px, 7vw, 84px)', borderRadius: '50%', overflow: 'hidden', border: '2px solid white', boxShadow: '0 4px 14px rgba(59, 130, 246, 0.15)' }}>
           {/* Detailed Operator Vector illustration matching sample */}
           <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
             {/* Background */}
@@ -383,8 +383,8 @@ export function CallingRescueCard() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         style={{
-          width: 'clamp(90px, 10vw, 130px)',
-          height: 'clamp(32px, 3.5vw, 44px)',
+          width: 'clamp(76px, 8.5vw, 100px)',
+          height: 'clamp(28px, 3vw, 36px)',
           borderRadius: 20,
           background: '#EF4444',
           border: 'none',
@@ -393,10 +393,10 @@ export function CallingRescueCard() {
           alignItems: 'center',
           justifyContent: 'center',
           boxShadow: '0 4px 14px rgba(239,68,68,0.3)',
-          marginTop: 6
+          marginTop: 4
         }}
       >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'rotate(135deg)' }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'rotate(135deg)' }}>
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.6 1.32h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16.5z" />
         </svg>
       </motion.button>
